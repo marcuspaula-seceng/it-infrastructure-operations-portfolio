@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "it-infrastructure-operations-portfolio"
+version = "1.0.0"
+description = "Sanitised infrastructure, endpoint management, asset lifecycle, virtualisation and service delivery case studies from enterprise EMEA IT operations."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Marcus Paula" }]
+keywords = [
+    "it-infrastructure",
+    "it-operations",
+    "service-delivery",
+    "endpoint-management",
+    "asset-management",
+    "virtualisation",
+]
+
+# The demonstration tools intentionally use the Python standard library only,
+# so there are no runtime dependencies.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[project.urls]
+Homepage = "https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio"
+Profile = "https://github.com/marcuspaula-seceng"
+LinkedIn = "https://www.linkedin.com/in/marcuspaula/"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
