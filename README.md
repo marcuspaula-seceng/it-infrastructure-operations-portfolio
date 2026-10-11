@@ -32,7 +32,6 @@ conventions. Every sample dataset is entirely synthetic. See
 | 03 | [Enterprise Virtualisation & Server Infrastructure](projects/03-virtualisation-infrastructure/README.md) | VMware vSphere / vCenter deployment | Mermaid architecture, deployment & validation checklists |
 | 04 | [Multi-Site IT Asset Return & Redeployment Workflow](projects/04-asset-return-redeployment/README.md) | Asset lifecycle across three sites | Mermaid workflow, operational checklist, RACI template |
 | 05 | [Meeting Room Readiness Programme (Lark & Zoom)](projects/05-meeting-room-readiness/README.md) | AV / UC readiness validation | Python reporting tool, synthetic 19-room CSV, unit tests |
-
 | 06 | [IT Asset & Service Management — SQLite Research](projects/06-itam-itsm-sqlite-research/README.md) | ITAM, ITSM and ITIL practice mapping | Professional context, research questions and local VM evidence status |
 
 ---
