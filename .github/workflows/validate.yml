@@ -25,6 +25,8 @@ jobs:
           python -m py_compile \
             projects/02-asset-management-audit/src/asset_audit.py \
             projects/05-meeting-room-readiness/src/room_readiness_report.py \
+            projects/06-itam-itsm-sqlite-research/src/reconcile_demo.py \
+            tests/test_sqlite_reconciliation.py \
             tests/test_asset_audit.py \
             tests/test_room_readiness_report.py
 

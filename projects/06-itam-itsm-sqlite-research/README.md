@@ -76,7 +76,7 @@ On 11 October 2026, the owner confirmed that the discussed work had already been
 
 ## Proposed educational data model
 
-This is a research specification, not a claim that these new tables have already been implemented.
+This is the broader research specification. The executable reconciliation exercise below implements only an expected-inventory snapshot and audit scans; the other proposed tables remain future work.
 
 | Table | Example fields | Purpose |
 |---|---|---|
@@ -124,4 +124,54 @@ This original synthesis was prepared with AI assistance from the owner's confirm
 
 Follow the [repository confidentiality policy](../../CONFIDENTIALITY.md). No colleague names, production tickets, internal screenshots, serial numbers, credentials, network topology or proprietary code are published. Employer identification above supplies career context only and implies no endorsement.
 
-This document adds the research context and exercise specification. Reproducible SQLite scripts, a synthetic dataset and sanitised VM execution evidence remain to be attached to this specific study.
+This study includes a reproducible synthetic SQLite reconciliation exercise below. Sanitised VM execution evidence remains to be attached separately; the Python tests do not verify the owner's VM or professional outcomes.
+
+
+## Reproduce the SQLite inventory exercise
+
+Requirements: Python 3.9 or later with its standard-library `sqlite3` module. No
+third-party packages, credentials, network calls or existing database are needed.
+Run from the repository root:
+
+```bash
+python projects/06-itam-itsm-sqlite-research/src/reconcile_demo.py
+python -m unittest discover -s tests -p "test_*.py" -v
+```
+
+The runner creates a fresh in-memory database and prints JSON. It does not write
+or overwrite a database file. Repeated runs produce the same report.
+
+- `sql/schema.sql`: one expected-inventory snapshot and repeatable audit scans
+- `sql/seed.sql`: three invented expected assets and five invented scans across two audits
+- `sql/reconcile.sql`: a parameterised query, scoped to `:audit_id`
+- `src/reconcile_demo.py`: a standard-library runner and reusable query functions
+- `../../tests/test_sqlite_reconciliation.py`: category, isolation, constraint and CLI tests
+
+For `DEMO-AUDIT-001`, the fixture's expected summary is matched 2, missing 1,
+unexpected 1 and duplicate 1. `DEMO-ASSET-002` is both matched and duplicated:
+matched means present in both sets, while duplicate is a separate data-quality
+flag. Category totals must not be added as though they were disjoint assets.
+A scan from `DEMO-AUDIT-002` must not make an asset appear present in the first audit.
+
+```bash
+python projects/06-itam-itsm-sqlite-research/src/reconcile_demo.py --audit-id DEMO-AUDIT-002
+```
+
+Unknown audit IDs are treated as an empty scan set: all expected assets are
+reported missing. This demonstration has no audit-session registry, historical
+inventory snapshots, timestamp calculations, custody workflow or persistence.
+Asset IDs are exact, case-sensitive identifiers; fixtures use uppercase IDs.
+A missing result warrants investigation, not a conclusion that equipment is lost.
+
+### Optional DB Browser walkthrough
+
+Create a new, disposable database. In Execute SQL, run `schema.sql` and then
+`seed.sql` once. Open `reconcile.sql` and, for this synthetic exercise only,
+replace `:audit_id` with the SQL literal `'DEMO-AUDIT-001'` before executing it.
+The Python runner instead binds the parameter safely. Do not concatenate real
+user input into SQL. The schema intentionally refuses recreation rather than
+dropping existing tables; start another disposable database to repeat the setup.
+
+These are synthetic fixture expectations and automated Python/SQLite checks,
+not evidence that DB Browser or the local VM has been inspected. No employer
+records or professional performance measurements are included in the fixture.
