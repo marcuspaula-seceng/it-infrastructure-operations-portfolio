@@ -2,14 +2,45 @@
 
 Read [the research README](README.md) for professional context and attribution. This lab implements its specification; it adds no professional performance claims. All identifiers, observations and measurements are invented fixtures. Timestamps use UTC, fixed-width `YYYY-MM-DD HH:MM:SS`. Scripts expect this format; the schema does not validate arbitrary timestamp strings. Six tables are intentionally retained; exercise scopes are explicit constants in the queries.
 
+## Scope and architecture
+
+The lab answers five operational questions (inventory reconciliation, overdue
+returns, recurring incidents, resolution time and preparation outcomes) against
+a small, deliberately constructed SQLite database. There is no server, web
+interface or network port: everything runs as files with Python's standard
+library.
+
+| File | Role |
+|---|---|
+| `schema.sql` | Six tables: `assets`, `assignments`, `audit_scans`, `incidents`, `service_requests`, `preparation_checks`, with CHECK, foreign-key and partial unique constraints |
+| `seed.sql` | Invented fixtures (four assets, three assignments, four scans, five incidents, four requests, four preparation checks) |
+| `queries/01`–`05` | One SQL file per exercise, with its snapshot date and scope stated in comments |
+| `tests/test_lab.py` | Eight pinned fixture tests, one fresh in-memory database per test |
+| `tests/test_run_lab.py` | Executor and custody-lifecycle tests (not part of the pinned inputs) |
+| `run_lab.py` | Executor: verifies input hashes, runs the pinned tests, exports a database, five CSVs and `run-results.json` to a new folder |
+
+Custody is modelled as assignment history (`assignments`, at most one open
+assignment per asset). Audit scans have no foreign key so that unknown items
+remain visible. Incidents, requests and preparation checks reference assets.
+
+### How the lab relates to ITAM, ITSM and ITIL
+
+- **ITAM (IT asset management):** asset records, custody history and audit
+  reconciliation (queries 01 and 05).
+- **ITSM (IT service management):** service requests and incidents with due
+  dates, exceptions and resolution times (queries 02–04).
+- **ITIL practices:** the exercises borrow vocabulary from incident, problem,
+  service request and continual improvement practices. The lab is a teaching
+  aid; it makes no claim of ITIL certification or formal conformance.
+
 ## DB Browser for SQLite
 
-1. Obtain a stable DB Browser build from the official download links in the research README. Record your guest OS, DB Browser version and the result of `SELECT sqlite_version();`. The GUI procedure below is provided for reproduction and has not been GUI-tested in the assistant environment.
+1. Obtain a stable DB Browser build from the official download links in the research README. Record your guest OS, DB Browser version and the result of `SELECT sqlite_version();`. The GUI procedure below is provided for reproduction and has not been GUI-tested in the hosted Linux environment.
 2. Choose **New Database**, save as `project06-demo.sqlite`, and cancel the initial table creation dialogue. Use a new empty file for every reset; these scripts deliberately reject existing tables or duplicate seeds.
 3. In **Execute SQL**, open `schema.sql` and execute the complete script, including `PRAGMA foreign_keys = ON` before `BEGIN`. Then open and execute all of `seed.sql`. If the GUI reports an existing transaction, use **Write Changes**, then execute the script again on an empty database. Do not run only the selected CREATE or INSERT statements.
 4. Use **Write Changes** after successful setup. Run `PRAGMA foreign_keys;` (expect 1), `PRAGMA integrity_check;` (expect `ok`) and `PRAGMA foreign_key_check;` (expect no rows). Enable foreign keys again on every new connection before a transaction; enforcement is connection-specific.
-5. Open each `queries/01_...sql` through `05_...sql` in **Execute SQL** and run the complete query. Export each result to CSV using the result grid export function. Compare against the expected fixture outputs below and the actual assistant results in [execution evidence](evidence/assistant-linux-results.md).
-6. Preserve your own sanitised CSVs/screenshots separately with actual UTC execution time and versions. The existing assistant evidence must not be relabelled as VM evidence.
+5. Open each `queries/01_...sql` through `05_...sql` in **Execute SQL** and run the complete query. Export each result to CSV using the result grid export function. Compare against the expected fixture outputs below and the actual hosted-environment results in [execution evidence](evidence/hosted-linux-results.md).
+6. Preserve your own sanitised CSVs/screenshots separately with actual UTC execution time and versions. The existing hosted-environment evidence must not be relabelled as VM evidence.
 7. If a script fails during its explicit transaction, execute `ROLLBACK;` before continuing. To reset, close the database and create a new empty file, then repeat steps 3–4. Never use this lab against a production database.
 
 ## Automated verification
@@ -47,8 +78,25 @@ To run without downloading, from the repository root:
 python projects/06-itam-itsm-sqlite-research/run_lab.py --source-dir projects/06-itam-itsm-sqlite-research
 ```
 
+#### Using a clone made with Git for Windows
+
+Git for Windows defaults to `core.autocrlf=true`, which converts text files to
+CRLF. Because the executor verifies inputs byte-for-byte, a CRLF copy fails
+with `Input hash mismatch` (the message flags CRLF content). The repository's
+`.gitattributes` keeps LF for Project 06 `.sql` and `.py` files, so a fresh
+clone works. A clone made before that file existed needs the unmodified
+Project 06 files checked out again. Then, inside Ubuntu:
+
+```sh
+cd /mnt/c/Users/<you>/<path>/it-infrastructure-operations-portfolio
+python3 projects/06-itam-itsm-sqlite-research/run_lab.py \
+  --source-dir projects/06-itam-itsm-sqlite-research --output-parent ~
+```
+
+Each run creates a new `project06-run-*` folder; earlier runs are not modified.
+
 The JSON reports the environment where execution actually happened. Running
-this executor in GitHub Actions or the assistant environment does not create
+this executor in GitHub Actions or the hosted Linux environment does not create
 owner WSL evidence. It does not launch or validate DB Browser and does not
 upload evidence. Use the DB Browser procedure above for GUI validation, enabling
 foreign keys for that connection.
@@ -60,6 +108,18 @@ python projects/06-itam-itsm-sqlite-research/tests/test_lab.py
 ```
 
 No pip dependencies or network access are needed. Eight tests cover exact fixture outputs, integrity, foreign-key enforcement, repeat seed rejection, invalid records, audit/window isolation, due-date boundaries, future completions, unresolved cases and equivalent preparation cohorts. Each test builds an isolated in-memory database; your saved database is untouched.
+
+Executor and lifecycle tests run separately and do not alter the pinned inputs:
+
+```sh
+python projects/06-itam-itsm-sqlite-research/tests/test_run_lab.py
+```
+
+Seven tests check that a local-source run produces the database, five CSVs and
+JSON evidence; that a repeat run creates a new folder without changing the
+previous one; that a tampered or CRLF-converted input aborts before tests and
+leaves no database; and that return-then-reassign keeps custody history while
+returns dated before assignment, unknown assets and invalid types are rejected.
 
 ## Expected fixture outputs and decisions
 
@@ -79,4 +139,4 @@ Assignments preserve custody history and allow at most one open assignment per a
 
 ## Evidence status
 
-[Assistant execution evidence](evidence/assistant-linux-results.md) records tests actually performed and input hashes. Owner VM execution, DB Browser GUI screenshots and exported VM results remain pending. Existing owner validation of professional activities remains as documented in the research README.
+[Hosted Linux execution evidence](evidence/hosted-linux-results.md) records tests actually performed and input hashes. [Owner execution on Ubuntu on WSL2](evidence/owner-wsl2-results.md) records the owner's own run on Windows 11, including a line-ending defect found and fixed. GitHub Actions results are CI evidence only. DB Browser GUI validation and execution in a standalone virtual machine remain pending. Existing owner validation of professional activities remains as documented in the research README.

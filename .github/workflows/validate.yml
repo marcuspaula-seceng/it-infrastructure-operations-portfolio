@@ -37,6 +37,9 @@ jobs:
             --source-dir projects/06-itam-itsm-sqlite-research \
             --output-parent "$RUNNER_TEMP"
 
+      - name: Run Project 06 executor and lifecycle tests
+        run: python projects/06-itam-itsm-sqlite-research/tests/test_run_lab.py
+
   powershell:
     runs-on: ubuntu-latest
     steps:

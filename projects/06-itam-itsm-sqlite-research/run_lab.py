@@ -49,8 +49,15 @@ def main():
         else:
             with urlopen(SOURCE_URL + name, timeout=30) as response:
                 content = response.read()
-        if hashlib.sha256(content).hexdigest() != expected_hash:
-            raise ValueError("Input hash mismatch: " + name)
+        actual_hash = hashlib.sha256(content).hexdigest()
+        if actual_hash != expected_hash:
+            hint = ""
+            if b"\r\n" in content:
+                hint = (" The file contains CRLF line endings; a Windows checkout"
+                        " converted it. Re-checkout with the repository"
+                        " .gitattributes or use the default download.")
+            raise ValueError("Input hash mismatch: " + name + " (expected "
+                             + expected_hash + ", got " + actual_hash + ")." + hint)
         target = root / name
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(content)
@@ -58,6 +65,7 @@ def main():
     kernel = platform.release()
     evidence = {
         "executed_at_utc": datetime.now(timezone.utc).isoformat(),
+        "executed_at_local": datetime.now().astimezone().isoformat(),
         "environment": "WSL" if "microsoft" in kernel.lower() else platform.system(),
         "os": platform.system(),
         "kernel": kernel,
