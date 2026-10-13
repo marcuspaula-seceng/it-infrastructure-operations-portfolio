@@ -106,3 +106,8 @@ Expected result for the bundled synthetic data: 9 matched, 1 missing,
   of false mismatches.
 - Providing a clear requirements and spreadsheet model made the hand-over to the
   colleague building the application far smoother.
+
+## Local execution evidence
+
+See [owner execution on Ubuntu on WSL2](evidence/owner-wsl2-results.md) for the commands, exit codes and results of a run on the owner's own computer.
+
