@@ -35,12 +35,12 @@ remain visible. Incidents, requests and preparation checks reference assets.
 
 ## DB Browser for SQLite
 
-1. Obtain a stable DB Browser build from the official download links in the research README. Record your guest OS, DB Browser version and the result of `SELECT sqlite_version();`. The GUI procedure below is provided for reproduction and has not been GUI-tested in the assistant environment.
+1. Obtain a stable DB Browser build from the official download links in the research README. Record your guest OS, DB Browser version and the result of `SELECT sqlite_version();`. The GUI procedure below is provided for reproduction and has not been GUI-tested in the hosted Linux environment.
 2. Choose **New Database**, save as `project06-demo.sqlite`, and cancel the initial table creation dialogue. Use a new empty file for every reset; these scripts deliberately reject existing tables or duplicate seeds.
 3. In **Execute SQL**, open `schema.sql` and execute the complete script, including `PRAGMA foreign_keys = ON` before `BEGIN`. Then open and execute all of `seed.sql`. If the GUI reports an existing transaction, use **Write Changes**, then execute the script again on an empty database. Do not run only the selected CREATE or INSERT statements.
 4. Use **Write Changes** after successful setup. Run `PRAGMA foreign_keys;` (expect 1), `PRAGMA integrity_check;` (expect `ok`) and `PRAGMA foreign_key_check;` (expect no rows). Enable foreign keys again on every new connection before a transaction; enforcement is connection-specific.
-5. Open each `queries/01_...sql` through `05_...sql` in **Execute SQL** and run the complete query. Export each result to CSV using the result grid export function. Compare against the expected fixture outputs below and the actual assistant results in [execution evidence](evidence/assistant-linux-results.md).
-6. Preserve your own sanitised CSVs/screenshots separately with actual UTC execution time and versions. The existing assistant evidence must not be relabelled as VM evidence.
+5. Open each `queries/01_...sql` through `05_...sql` in **Execute SQL** and run the complete query. Export each result to CSV using the result grid export function. Compare against the expected fixture outputs below and the actual hosted-environment results in [execution evidence](evidence/hosted-linux-results.md).
+6. Preserve your own sanitised CSVs/screenshots separately with actual UTC execution time and versions. The existing hosted-environment evidence must not be relabelled as VM evidence.
 7. If a script fails during its explicit transaction, execute `ROLLBACK;` before continuing. To reset, close the database and create a new empty file, then repeat steps 3–4. Never use this lab against a production database.
 
 ## Automated verification
@@ -96,7 +96,7 @@ python3 projects/06-itam-itsm-sqlite-research/run_lab.py \
 Each run creates a new `project06-run-*` folder; earlier runs are not modified.
 
 The JSON reports the environment where execution actually happened. Running
-this executor in GitHub Actions or the assistant environment does not create
+this executor in GitHub Actions or the hosted Linux environment does not create
 owner WSL evidence. It does not launch or validate DB Browser and does not
 upload evidence. Use the DB Browser procedure above for GUI validation, enabling
 foreign keys for that connection.
@@ -139,4 +139,4 @@ Assignments preserve custody history and allow at most one open assignment per a
 
 ## Evidence status
 
-[Assistant execution evidence](evidence/assistant-linux-results.md) records tests actually performed and input hashes. [Owner execution on Ubuntu on WSL2](evidence/owner-wsl2-results.md) records the owner's own run on Windows 11, including a line-ending defect found and fixed. GitHub Actions results are CI evidence only. DB Browser GUI validation and execution in a standalone virtual machine remain pending. Existing owner validation of professional activities remains as documented in the research README.
+[Hosted Linux execution evidence](evidence/hosted-linux-results.md) records tests actually performed and input hashes. [Owner execution on Ubuntu on WSL2](evidence/owner-wsl2-results.md) records the owner's own run on Windows 11, including a line-ending defect found and fixed. GitHub Actions results are CI evidence only. DB Browser GUI validation and execution in a standalone virtual machine remain pending. Existing owner validation of professional activities remains as documented in the research README.

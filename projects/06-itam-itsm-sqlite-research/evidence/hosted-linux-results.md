@@ -1,4 +1,4 @@
-# Execution evidence — assistant execution environment
+# Execution evidence — hosted Linux environment
 
 Executed UTC: 2026-10-13T01:40:24.749440+00:00
 Environment: Linux 6.18.44
@@ -7,7 +7,7 @@ SQLite linked to Python: 3.53.1
 Command: `python projects/06-itam-itsm-sqlite-research/tests/test_lab.py`
 Exit status: 0
 
-This is actual execution in the assistant's Linux environment using Python's sqlite3 module and fresh in-memory databases. It is not execution on Marcus's VM. DB Browser GUI, guest OS and Windows execution were not tested. No employer data was used.
+This is actual execution in a hosted Linux environment using Python's sqlite3 module and fresh in-memory databases. It is not execution on Marcus's VM. DB Browser GUI, guest OS and Windows execution were not tested. No employer data was used.
 
 ```text
 test_integrity (__main__.LabTests.test_integrity) ... ok

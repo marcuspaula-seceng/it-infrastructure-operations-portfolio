@@ -87,7 +87,7 @@ Executor evidence (`run-results.json`, local-source run):
 ```
 
 Both executor runs produced the same database hash. It differs from the
-assistant-environment hash (`3ea55a61…`), which used SQLite 3.53.1; the
+hosted-environment hash (`3ea55a61…`), which used SQLite 3.53.1; the
 on-disk file format depends on the SQLite library version, so compare query
 results rather than database hashes across environments.
 
