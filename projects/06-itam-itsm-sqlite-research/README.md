@@ -122,6 +122,8 @@ This original synthesis was prepared with AI assistance from the owner's confirm
 
 ## Confidentiality and limitations
 
+This independent portfolio lab draws on general IT support and asset-management experience, including my work at TikTok. It uses entirely synthetic data and an original implementation to demonstrate common ITAM/ITSM concepts. It does not reproduce TikTok’s internal systems, code, configurations, documentation or operational data, and is not affiliated with or endorsed by TikTok.
+
 Follow the [repository confidentiality policy](../../CONFIDENTIALITY.md). No colleague names, production tickets, internal screenshots, serial numbers, credentials, network topology or proprietary code are published. Employer identification above supplies career context only and implies no endorsement.
 
-This document provides the research context and exercise specification. The [reproducible lab](LAB.md) now supplies schema.sql, seed.sql, five exercise queries and automated tests. [Execution evidence](evidence/assistant-linux-results.md) records actual tests in the assistant Linux environment. DB Browser GUI execution and sanitised evidence from the owner’s VM remain pending; assistant results are not VM evidence.
+This document provides the research context and exercise specification. The [reproducible lab](LAB.md) now supplies schema.sql, seed.sql, five exercise queries and automated tests. [Execution evidence](evidence/assistant-linux-results.md) records actual tests in the assistant Linux environment. [Owner execution evidence](evidence/owner-wsl2-results.md) records the owner's own run in Ubuntu on WSL2 on Windows 11 (13 October 2026). DB Browser GUI execution and a standalone VM run remain pending; neither assistant nor WSL2 results are VM evidence.
