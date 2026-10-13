@@ -76,7 +76,7 @@ On 11 October 2026, the owner confirmed that the discussed work had already been
 
 ## Proposed educational data model
 
-This is a research specification, not a claim that these new tables have already been implemented.
+The specification below is implemented by the independent [reproducible SQLite lab](LAB.md), using entirely synthetic fixtures.
 
 | Table | Example fields | Purpose |
 |---|---|---|
@@ -124,4 +124,4 @@ This original synthesis was prepared with AI assistance from the owner's confirm
 
 Follow the [repository confidentiality policy](../../CONFIDENTIALITY.md). No colleague names, production tickets, internal screenshots, serial numbers, credentials, network topology or proprietary code are published. Employer identification above supplies career context only and implies no endorsement.
 
-This document adds the research context and exercise specification. Reproducible SQLite scripts, a synthetic dataset and sanitised VM execution evidence remain to be attached to this specific study.
+This document provides the research context and exercise specification. The [reproducible lab](LAB.md) now supplies schema.sql, seed.sql, five exercise queries and automated tests. [Execution evidence](evidence/assistant-linux-results.md) records actual tests in the assistant Linux environment. DB Browser GUI execution and sanitised evidence from the owner’s VM remain pending; assistant results are not VM evidence.
