@@ -3,6 +3,19 @@
 All notable changes to this portfolio are documented here. The format is based
 on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Added
+
+- Project 06: executor and custody-lifecycle tests (`tests/test_run_lab.py`) and
+  owner execution evidence from Ubuntu on WSL2.
+
+### Fixed
+
+- Project 06: Windows clones failed input hash verification because Git for
+  Windows converted files to CRLF; `.gitattributes` now keeps LF and the
+  executor reports the cause.
+
 ## [1.0.0] - 2026-09-21
 
 ### Added

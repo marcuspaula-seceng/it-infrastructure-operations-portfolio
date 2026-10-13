@@ -1,0 +1,5 @@
+# Project 06 inputs are verified byte-for-byte by SHA-256 in run_lab.py.
+# Keep LF line endings on every checkout (including Git for Windows with
+# core.autocrlf=true) so a Windows clone can be used with --source-dir.
+projects/06-itam-itsm-sqlite-research/**/*.sql text eol=lf
+projects/06-itam-itsm-sqlite-research/**/*.py text eol=lf
