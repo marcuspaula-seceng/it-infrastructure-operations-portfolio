@@ -72,7 +72,7 @@ For context and existing demonstration artefacts:
 6. Explain what the result supports, what it does not establish and the next action.
 7. Make the exercise reproducible for a reader starting with an empty database.
 
-On 11 October 2026, the owner confirmed that the discussed work had already been validated. This records the owner's confirmation; the assistant did not inspect the local VM. The guest OS, exact tool versions, execution logs, screenshots and database were not supplied in this GitHub update. No fabricated execution results are included.
+On 11 October 2026, the owner confirmed that the discussed work had already been validated. This records the owner's confirmation; the local VM itself was not inspected for this document. The guest OS, exact tool versions, execution logs, screenshots and database were not supplied in this GitHub update. No fabricated execution results are included.
 
 ## Proposed educational data model
 
@@ -118,7 +118,7 @@ The installation article supplied during planning was titled **How to Install DB
 - [PeopleCert Problem Management](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil4-practices-problem-management-3688): problem management study reference.
 - [PeopleCert Continual Improvement](https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1/itil-4-practitioner-continual-improvement-3871): improvement study reference.
 
-This original synthesis was prepared with AI assistance from the owner's confirmed experience and the existing portfolio. Third-party software, course material and frameworks remain attributable to their respective creators. The repository's licence applies to its own original material, not to those third-party works. No upstream code, course images or installer binaries are included in this study.
+This original synthesis is based on the owner's confirmed experience and the existing portfolio. Third-party software, course material and frameworks remain attributable to their respective creators. The repository's licence applies to its own original material, not to those third-party works. No upstream code, course images or installer binaries are included in this study.
 
 ## Confidentiality and limitations
 
@@ -126,4 +126,4 @@ This independent portfolio lab draws on general IT support and asset-management 
 
 Follow the [repository confidentiality policy](../../CONFIDENTIALITY.md). No colleague names, production tickets, internal screenshots, serial numbers, credentials, network topology or proprietary code are published. Employer identification above supplies career context only and implies no endorsement.
 
-This document provides the research context and exercise specification. The [reproducible lab](LAB.md) now supplies schema.sql, seed.sql, five exercise queries and automated tests. [Execution evidence](evidence/assistant-linux-results.md) records actual tests in the assistant Linux environment. [Owner execution evidence](evidence/owner-wsl2-results.md) records the owner's own run in Ubuntu on WSL2 on Windows 11 (13 October 2026). DB Browser GUI execution and a standalone VM run remain pending; neither assistant nor WSL2 results are VM evidence.
+This document provides the research context and exercise specification. The [reproducible lab](LAB.md) now supplies schema.sql, seed.sql, five exercise queries and automated tests. [Execution evidence](evidence/hosted-linux-results.md) records actual tests in the hosted Linux environment. [Owner execution evidence](evidence/owner-wsl2-results.md) records the owner's own run in Ubuntu on WSL2 on Windows 11 (13 October 2026). DB Browser GUI execution and a standalone VM run remain pending; neither hosted nor WSL2 results are VM evidence.

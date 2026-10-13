@@ -1,8 +1,8 @@
-# Executor verification — assistant Linux environment
+# Executor verification — hosted Linux environment
 
 The new run_lab.py executor was exercised with local source inputs and with its default HTTPS download of the pinned original lab inputs. Both runs returned exit status 0 and ran all eight lab tests. The persistent database was reopened and its integrity and asset count checked; five CSVs and the JSON evidence were produced.
 
-The metadata below is from the actual default-download run in the assistant environment. It is not owner WSL execution and is not DB Browser GUI evidence.
+The metadata below is from the actual default-download run in the hosted Linux environment. It is not owner WSL execution and is not DB Browser GUI evidence.
 
 ```json
 {
