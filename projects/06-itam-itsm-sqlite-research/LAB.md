@@ -14,6 +14,45 @@ Read [the research README](README.md) for professional context and attribution. 
 
 ## Automated verification
 
+### Windows with Ubuntu on WSL 2
+
+If Ubuntu is stopped, the following PowerShell command starts it and runs the
+standard-library [executor](run_lab.py). Python 3 with its SQLite module must
+already be available inside Ubuntu. No Git or pip packages are required. The
+initial download requires HTTPS access to raw.githubusercontent.com.
+
+```powershell
+wsl -d Ubuntu -- python3 -c "import urllib.request; exec(urllib.request.urlopen('https://raw.githubusercontent.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/main/projects/06-itam-itsm-sqlite-research/run_lab.py', timeout=30).read())"
+```
+
+The command above loads the executor from `main`; for an immutable executor,
+replace `main` in that URL with a reviewed commit SHA. The executor itself
+always downloads the eight original lab inputs from commit
+`0f8be5fd9b931770b176c1730729827c57c856ad` and verifies their SHA-256 hashes before
+running them. It creates a new `project06-run-*` directory in the Ubuntu user's
+home directory, preserving existing runs. A changed fixture needs an explicit
+update to both the revision and hashes before this executor can use it.
+
+The printed path contains the actual test log, a populated `project06-demo.sqlite`
+database, five CSV result files and `run-results.json` with the execution time,
+detected OS/kernel/distribution, Python and SQLite versions, test exit code,
+input hashes, database hash and actual query output. CSV represents NULL as an
+empty cell; JSON retains NULL explicitly. Test failures return a nonzero exit
+code and produce no demonstration database. Download or hash failures abort
+before tests run and may leave a partial run directory.
+
+To run without downloading, from the repository root:
+
+```sh
+python projects/06-itam-itsm-sqlite-research/run_lab.py --source-dir projects/06-itam-itsm-sqlite-research
+```
+
+The JSON reports the environment where execution actually happened. Running
+this executor in GitHub Actions or the assistant environment does not create
+owner WSL evidence. It does not launch or validate DB Browser and does not
+upload evidence. Use the DB Browser procedure above for GUI validation, enabling
+foreign keys for that connection.
+
 From the repository root with Python 3 and its standard-library SQLite module:
 
 ```sh
