@@ -86,3 +86,8 @@ Expected result for the bundled synthetic data: 19 rooms — 14 pass, 3 warning,
   testing would have missed.
 - Distinguishing "warning" from "fail" helped prioritise fixes without blocking
   rooms that were still usable.
+
+## Local execution evidence
+
+See [owner execution on Ubuntu on WSL2](evidence/owner-wsl2-results.md) for the commands, exit codes and results of a run on the owner's own computer.
+
