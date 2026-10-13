@@ -13,7 +13,7 @@ This is an independent learning project. It is not an employer system, an offici
 
 ## Professional context and chronology
 
-The professional context includes my work as an IT Support Engineer at TikTok Technology Ireland Ltd, from March 2023 to September 2026, supporting enterprise IT operations in an EMEA context.
+The professional context includes my work as an IT Operations Engineer at TikTok Technology Ireland Ltd, from March 2023 to September 2026, supporting enterprise IT operations in an EMEA context.
 
 My preceding experience at Hylas, January 2022 to February 2023, included Active Directory permissions, VPN, LAN/WAN and stock workflows. These roles provide context within the recent five-year career review; this document does not describe five years of employment at TikTok or assign EMEA-wide responsibility to every role.
 
