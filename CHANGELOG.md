@@ -3,10 +3,13 @@
 All notable changes to this portfolio are documented here. The format is based
 on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
+## [1.1.0] - 2026-10-13
 
 ### Added
 
+- Project 06 — IT Asset & Service Management: applied research with a
+  reproducible SQLite lab (six-table schema, synthetic seed data, five
+  exercise queries, evidence executor and 15 standard-library tests).
 - Project 06: executor and custody-lifecycle tests (`tests/test_run_lab.py`) and
   owner execution evidence from Ubuntu on WSL2.
 
