@@ -45,14 +45,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Syntax-check PowerShell script
+      - name: Syntax-check PowerShell scripts
         shell: pwsh
         run: |
-          $path = 'projects/01-endpoint-imaging-optimisation/Get-EndpointReadiness.ps1'
-          $errors = $null
-          [System.Management.Automation.Language.Parser]::ParseFile($path, [ref]$null, [ref]$errors) | Out-Null
-          if ($errors) {
-            $errors | ForEach-Object { Write-Error $_.Message }
-            exit 1
+          $failed = $false
+          Get-ChildItem -Path projects -Recurse -Filter *.ps1 | ForEach-Object {
+            $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$null, [ref]$errors) | Out-Null
+            if ($errors) {
+              $errors | ForEach-Object { Write-Error $_.Message }
+              $failed = $true
+            } else {
+              Write-Host "PowerShell syntax OK: $($_.Name)"
+            }
           }
-          Write-Host 'PowerShell syntax OK'
+          if ($failed) { exit 1 }

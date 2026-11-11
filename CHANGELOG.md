@@ -3,6 +3,16 @@
 All notable changes to this portfolio are documented here. The format is based
 on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.3.0] - 2026-11-11
+
+### Added
+
+- Project 08 — Identity & Endpoint Lifecycle: case study of joiner, mover and
+  leaver administration across Microsoft Entra ID, Microsoft 365, Intune and
+  Jamf, with a lifecycle diagram, a joiner/leaver runbook, a troubleshooting
+  guide and a read-only Microsoft Graph PowerShell snapshot script.
+- CI: PowerShell syntax check now covers every script in the repository.
+
 ## [1.2.0] - 2026-11-11
 
 ### Added
