@@ -8,10 +8,16 @@ on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 
 - Project 08 — Identity & Endpoint Lifecycle: case study of joiner, mover and
-  leaver administration across Microsoft Entra ID, Microsoft 365, Intune and
-  Jamf, with a lifecycle diagram, a joiner/leaver runbook, a troubleshooting
-  guide and a read-only Microsoft Graph PowerShell snapshot script.
+  leaver administration across Microsoft Entra ID, Microsoft 365, Apple
+  Business Manager, Puppet and BitLocker, with a lifecycle diagram, a tool
+  mapping to Intune and Jamf, a joiner/leaver runbook, a troubleshooting guide
+  and a read-only Microsoft Graph PowerShell snapshot script.
 - CI: PowerShell syntax check now covers every script in the repository.
+
+### Changed
+
+- CI: Python test matrix moved to 3.11-3.13 (3.9 is no longer available on
+  Ubuntu 26.04 runners).
 
 ## [1.2.0] - 2026-11-11
 

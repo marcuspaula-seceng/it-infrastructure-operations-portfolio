@@ -1,7 +1,9 @@
 # Identity and Device Troubleshooting Guide
 
-Common issues from Windows and macOS support, with how each was diagnosed and
-fixed. Generic reference; no employer-specific details.
+Common identity and device issues, with how to diagnose and fix them. Identity
+rows reflect day-to-day Entra ID and Microsoft 365 support. Device rows are
+written as a reference for an Intune and Jamf environment, plus BitLocker and
+Puppet. Generic reference; no employer-specific details.
 
 | Issue | How to diagnose | Fix |
 |-------|-----------------|-----|
@@ -16,6 +18,8 @@ fixed. Generic reference; no employer-specific details.
 | Mac not checking in | Jamf Pro → Computer → Inventory: last check-in | Run `sudo jamf policy` / `sudo jamf recon` on the Mac, check network and MDM profile |
 | Mac missing an app | Jamf policy logs for that computer | Re-run the policy or install from Self Service |
 | New Mac did not enrol automatically | Serial not in Apple Business Manager or not assigned to the Jamf server | Assign in Apple Business Manager, erase and set up again |
+| Windows asks for a BitLocker recovery key | Usually after a BIOS/firmware update or hardware change | Verify identity, retrieve the recovery key for that device, unlock, then check why it was triggered |
+| Mac drifted from the standard configuration | Puppet run report for that Mac | Trigger a Puppet run (`sudo puppet agent -t`), check the agent can reach the server |
 | Lost laptop | Last check-in and user confirmation | Lock (Jamf / Intune), revoke sessions, wipe if not recovered |
 
 ## Approach

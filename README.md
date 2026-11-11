@@ -34,7 +34,7 @@ conventions. Every sample dataset is entirely synthetic. See
 | 05 | [Meeting Room Readiness Programme (Lark & Zoom)](projects/05-meeting-room-readiness/README.md) | AV / UC readiness validation | Python reporting tool, synthetic 19-room CSV, unit tests |
 | 06 | [IT Asset & Service Management — SQLite Research](projects/06-itam-itsm-sqlite-research/README.md) | ITAM, ITSM and ITIL practice mapping | Reproducible SQLite lab (six tables, five queries, 15 standard-library tests), evidence from Ubuntu on WSL2 |
 | 07 | [Jira Service Management Lab — IT Service Desk Build](projects/07-jira-service-management-lab/README.md) | ITSM configuration and automation | Request types, response and resolution SLAs on a Dublin calendar, JQL queue, joiner/leaver automation, access approval workflow, Confluence knowledge base, test evidence |
-| 08 | [Identity & Endpoint Lifecycle — Entra ID, Microsoft 365, Intune, Jamf](projects/08-identity-endpoint-lifecycle/README.md) | Joiner, mover and leaver across Windows and macOS | Lifecycle diagram, joiner/leaver runbook, troubleshooting guide, read-only Microsoft Graph PowerShell script |
+| 08 | [Identity & Endpoint Lifecycle — Entra ID, Microsoft 365, Apple Business Manager, Puppet, BitLocker](projects/08-identity-endpoint-lifecycle/README.md) | Joiner, mover and leaver across Windows and macOS | Lifecycle diagram, tool mapping to Intune/Jamf, joiner/leaver runbook, troubleshooting guide, read-only Microsoft Graph PowerShell script |
 
 ---
 
@@ -51,8 +51,8 @@ conventions. Every sample dataset is entirely synthetic. See
 - **Unified communications & audiovisual systems** — Lark and Zoom room
   readiness, displays, cameras, microphones, wireless screen sharing.
 - **Identity & endpoint management** — Microsoft Entra ID accounts, MFA and
-  groups, Microsoft 365 licences and mailboxes, Intune (Windows) and Jamf
-  (macOS) enrolment, compliance, lock and wipe.
+  groups, Microsoft 365 licences and mailboxes, Apple Business Manager and
+  Puppet for macOS, BitLocker encryption for Windows.
 - **IT service management** — Jira Service Management request types, SLAs on
   business-hours calendars, JQL queues and onboarding automation.
 - **Tooling** — PowerShell (incl. Microsoft Graph SDK), Python (standard library), Mermaid, CSV data models,
