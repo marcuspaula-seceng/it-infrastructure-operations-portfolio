@@ -25,6 +25,12 @@ reference implementations**, created independently for portfolio purposes.
 - They do **not** reproduce internal naming conventions, formats or topology.
 - All datasets are **entirely synthetic** and were generated for demonstration.
 
+## Project 07 screenshots
+
+The screenshots in Project 07 come from the owner's personal Jira Service
+Management lab site, created for portfolio purposes. They are not taken from
+any employer system, and every work item shown is synthetic test data.
+
 ## Contribution accuracy
 
 Contributions are described honestly. Where work was collaborative or supporting

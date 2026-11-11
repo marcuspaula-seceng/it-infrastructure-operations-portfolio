@@ -3,6 +3,22 @@
 All notable changes to this portfolio are documented here. The format is based
 on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.2.0] - 2026-11-11
+
+### Added
+
+- Project 07 — Jira Service Management Lab: an IT service desk built on a
+  personal Jira Service Management Cloud site, with four request types and
+  portal groups, a Dublin office hours SLA calendar, a Time to first response
+  and a Time to resolution SLA, a JQL queue for unassigned work at SLA risk,
+  onboarding and offboarding automation flows, and a manager-approval
+  workflow for access requests.
+- Project 07: end-to-end owner test evidence, including a failed approval run,
+  its root cause from the automation audit log, and the fix.
+- Project 07: step-by-step build log mapping each step to Jira Service
+  Management training topics, with 17 screenshots of the configuration and
+  test results.
+
 ## [1.1.0] - 2026-10-13
 
 ### Added

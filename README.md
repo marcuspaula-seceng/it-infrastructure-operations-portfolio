@@ -33,6 +33,7 @@ conventions. Every sample dataset is entirely synthetic. See
 | 04 | [Multi-Site IT Asset Return & Redeployment Workflow](projects/04-asset-return-redeployment/README.md) | Asset lifecycle across three sites | Mermaid workflow, operational checklist, RACI template |
 | 05 | [Meeting Room Readiness Programme (Lark & Zoom)](projects/05-meeting-room-readiness/README.md) | AV / UC readiness validation | Python reporting tool, synthetic 19-room CSV, unit tests |
 | 06 | [IT Asset & Service Management — SQLite Research](projects/06-itam-itsm-sqlite-research/README.md) | ITAM, ITSM and ITIL practice mapping | Reproducible SQLite lab (six tables, five queries, 15 standard-library tests), evidence from Ubuntu on WSL2 |
+| 07 | [Jira Service Management Lab — IT Service Desk Build](projects/07-jira-service-management-lab/README.md) | ITSM configuration and automation | Request types, response and resolution SLAs on a Dublin calendar, JQL queue, joiner/leaver automation, access approval workflow, test evidence |
 
 ---
 
@@ -48,8 +49,10 @@ conventions. Every sample dataset is entirely synthetic. See
   wiping, reimaging, quality checks, storage and redeployment.
 - **Unified communications & audiovisual systems** — Lark and Zoom room
   readiness, displays, cameras, microphones, wireless screen sharing.
+- **IT service management** — Jira Service Management request types, SLAs on
+  business-hours calendars, JQL queues and onboarding automation.
 - **Tooling** — PowerShell, Python (standard library), Mermaid, CSV data models,
-  GitHub Actions.
+  JQL, GitHub Actions.
 
 ---
 
