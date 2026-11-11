@@ -48,3 +48,12 @@ All data used in these tests is synthetic.
 `IT-11` and `IT-12` show both SLAs on the Dublin office hours calendar:
 Time to first response (4h target) and Time to resolution (24h target), with
 due times calculated in working hours rather than elapsed time.
+
+## Test: knowledge base self-service
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Link the IT Help Centre Confluence space as the external knowledge base | Space linked | "Knowledge source linked successfully"; articles listed under Knowledge Base |
+| 2 | Search the customer portal for *password* | Matching article shown before a request is raised | *How to reset your password* shown under **Self-help resources** with a content preview |
+
+**Result:** pass.

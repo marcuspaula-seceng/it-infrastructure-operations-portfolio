@@ -16,8 +16,10 @@ on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Project 07: end-to-end owner test evidence, including a failed approval run,
   its root cause from the automation audit log, and the fix.
 - Project 07: step-by-step build log mapping each step to Jira Service
-  Management training topics, with 17 screenshots of the configuration and
+  Management training topics, with 19 screenshots of the configuration and
   test results.
+- Project 07: Confluence knowledge base (IT Help Centre) linked to the portal,
+  with three self-help articles and a portal search test.
 
 ## [1.1.0] - 2026-10-13
 

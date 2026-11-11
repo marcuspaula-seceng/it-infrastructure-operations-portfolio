@@ -7,8 +7,8 @@ service desk on a personal Jira Service Management Cloud site (Free plan) to
 practise the administration side of a tool I used daily as an agent. The lab covers request types and portal groups, response and
 resolution SLAs on a Dublin working-hours calendar, a JQL-based queue for SLA
 risk, joiner and leaver automation flows, and a manager-approval step on access
-requests. Every configuration item was checked end to end with synthetic test
-requests.
+requests, and a Confluence knowledge base for self-service. Every configuration
+item was checked end to end with synthetic test requests.
 
 ## Operational challenge
 
@@ -40,6 +40,9 @@ that configuration from scratch so each design decision can be explained.
 - Gave Access requests their own workflow with an approval status
   (**In review**) and a flow that sets the approver and routes every new access
   request into approval before any work starts.
+- Created a Confluence knowledge base (**IT Help Centre**), linked it to the
+  portal and wrote three self-help articles: password reset, VPN and slow
+  laptop.
 - Verified every flow with synthetic requests, including one failed run that
   exposed a missing workflow transition and was fixed, and recorded the results
   in [`evidence/owner-cloud-results.md`](evidence/owner-cloud-results.md).
@@ -66,6 +69,8 @@ that configuration from scratch so each design decision can be explained.
 - One onboarding request now produces four assigned-ready sub-tasks with no
   manual copying (verified: one request in, four sub-tasks out); the same holds
   for leavers.
+- Employees searching the portal see the matching self-help article before
+  raising a ticket.
 - Access requests cannot be worked until approved; the platform also excluded
   the requester from approving their own request (segregation of duties).
 
@@ -77,6 +82,7 @@ that configuration from scratch so each design decision can be explained.
 - Jira automation (trigger, JQL condition, create sub-tasks, edit field,
   transition actions) and the automation audit log for troubleshooting
 - Jira workflows and approvals
+- Confluence knowledge base and self-service (ticket deflection)
 - Joiner and leaver process design (Microsoft 365, Entra ID, Intune/Jamf)
 - Technical documentation
 
@@ -85,7 +91,7 @@ that configuration from scratch so each design decision can be explained.
 - [`build-log.md`](build-log.md) — **start here**: the build step by step,
   each step tied to the Jira Service Management training topic it applies,
   with the decision made, the reason, and a screenshot.
-- [`screenshots/`](screenshots/) — 17 screenshots of the configuration and the
+- [`screenshots/`](screenshots/) — 19 screenshots of the configuration and the
   test results.
 - [`configuration.md`](configuration.md) — the full configuration: request
   types, portal groups, SLA calendar and goals, queue JQL and the automation
@@ -96,8 +102,8 @@ that configuration from scratch so each design decision can be explained.
 ## Scope and limitations
 
 Configured and tested in this lab: everything listed above. **Not** configured
-here: Assets (CMDB) object schemas (a Premium feature on this plan), a
-Confluence knowledge base, and SAML SSO or SCIM provisioning from Entra ID.
+here: Assets (CMDB) object schemas (a Premium feature on this plan) and SAML SSO
+or SCIM provisioning from Entra ID.
 These are documented as next steps rather than claimed.
 
 > This lab runs on a personal Free-plan site created for portfolio purposes. It

@@ -19,6 +19,7 @@ Built on 11 November 2026 on a personal Jira Service Management Cloud site
 | 7 | Automation reuse | Offboarding (leaver) flow |
 | 8 | Workflows and approvals | Access request approval workflow and flow |
 | 9 | Testing and troubleshooting | End-to-end tests, audit log, fix |
+| 10 | Knowledge base and self-service | Confluence knowledge base linked to the portal |
 
 ---
 
@@ -225,12 +226,42 @@ segregation of duties enforced by the platform.
 
 ---
 
+## Step 10 — Knowledge base and self-service
+
+**Training topic:** a knowledge base linked to the portal lets employees solve
+common problems themselves before raising a ticket (ticket deflection).
+
+**What I did:**
+
+1. Moved Confluence on the site to the **Free** plan and gave my account access.
+2. Created a Confluence space, **IT Help Centre**, with the knowledge base
+   purpose.
+3. Linked it to the service space as an **external** knowledge base, so
+   employees can see it in the portal.
+4. Wrote three articles for the most common first-line requests: *How to reset
+   your password*, *How to connect to the VPN when working remotely* and
+   *My laptop is slow - first steps*. Each ends by telling the employee which
+   request type to raise if the steps do not work.
+
+**Why:** password resets, VPN problems and slow laptops are repeat tickets.
+Good self-help articles reduce volume and leave agents for real problems.
+
+![Knowledge base articles](screenshots/18-knowledge-base-articles.jpg)
+
+**Test:** in the customer portal, a search for *password* returned the article
+under **Self-help resources**, with its content preview, before any request was
+raised.
+
+![Portal search showing the self-help article](screenshots/19-test-portal-self-help-search.jpg)
+
+---
+
 ## What I would do next
 
 - **Assets (CMDB):** a laptop object schema linked to the Laptop or device
   issue form (requires the Premium plan on this site).
-- **Knowledge base:** Confluence articles linked to the portal for ticket
-  deflection.
+- **Knowledge base:** more articles, with categories, and reporting on which
+  searches end without an article.
 - **SSO and SCIM** from Entra ID so access to the service desk follows the
   identity lifecycle.
 - **Approver from the manager field** instead of a fixed approver, once the

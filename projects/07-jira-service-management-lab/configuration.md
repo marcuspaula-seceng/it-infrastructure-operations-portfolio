@@ -153,9 +153,17 @@ work item through In Progress first. The first test run failed on exactly this
 point; the automation audit log showed the failed transition and the flow was
 corrected (see the evidence file).
 
+## 6d. Knowledge base
+
+| Setting | Value |
+|---|---|
+| Confluence plan | Free |
+| Space | IT Help Centre (knowledge base purpose) |
+| Link type | External knowledge base (visible to customers in the portal) |
+| Articles | How to reset your password · How to connect to the VPN when working remotely · My laptop is slow - first steps |
+
 ## 7. Next steps (not yet configured)
 
 - Assets schema for laptops, imported from the device-management tool, linked
   to the Laptop or device issue form.
-- Confluence knowledge base linked to the portal for ticket deflection.
 - Offboarding flow mirroring the onboarding flow.
