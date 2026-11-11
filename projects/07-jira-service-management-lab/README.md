@@ -10,6 +10,26 @@ risk, joiner and leaver automation flows, and a manager-approval step on access
 requests, and a Confluence knowledge base for self-service. Every configuration
 item was checked end to end with synthetic test requests.
 
+## Evidence at a glance
+
+Every claim in this project has a screenshot from the lab site. Full detail is
+in the [build log](build-log.md) and the [test results](evidence/owner-cloud-results.md).
+
+| What I built | Proof |
+|---|---|
+| Customer portal grouped by employee need | [Portal](screenshots/01-customer-portal-groups.jpg) |
+| Four request types, each with its own form and workflow | [Request types](screenshots/02-request-types.jpg) · [New starter form](screenshots/03-new-starter-request-form.jpg) |
+| Dublin office hours calendar with Irish holidays | [Calendar](screenshots/07-sla-calendar-dublin.jpg) |
+| Time to first response SLA (1h / 4h) | [Goals](screenshots/04-sla-first-response-goals.jpg) · [Conditions](screenshots/05-sla-first-response-conditions.jpg) |
+| Time to resolution SLA (8h / 24h) | [Resolution SLA](screenshots/06-sla-time-to-resolution.jpg) |
+| JQL queue for unassigned work at SLA risk | [Queue JQL](screenshots/08-queue-sla-at-risk-jql.jpg) |
+| Onboarding automation — tested | [Flow](screenshots/09-automation-onboarding-flow.jpg) · [Test IT-1: four sub-tasks](screenshots/14-test-onboarding-IT-1.jpg) |
+| Offboarding automation — tested | [Flow](screenshots/11-automation-offboarding-flow.jpg) · [Test IT-6: four sub-tasks](screenshots/15-test-offboarding-IT-6.jpg) |
+| Manager approval on access requests — tested | [Workflow](screenshots/13-workflow-access-approval.jpg) · [Flow](screenshots/12-automation-approval-flow.jpg) · [Test IT-12: waiting for approval](screenshots/16-test-approval-IT-12.jpg) |
+| Troubleshooting: failed run, root cause, fix | [Audit log](screenshots/17-audit-log-failure-and-fix.jpg) |
+| All automation flows enabled | [Flows list](screenshots/10-automation-flows-list.jpg) |
+| Confluence knowledge base — tested | [Articles](screenshots/18-knowledge-base-articles.jpg) · [Portal search shows the article](screenshots/19-test-portal-self-help-search.jpg) |
+
 ## Operational challenge
 
 In enterprise IT operations I worked tickets from the agent side: triaging by
