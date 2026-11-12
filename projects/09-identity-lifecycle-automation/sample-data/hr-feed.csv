@@ -1,0 +1,6 @@
+EmployeeId,DisplayName,Department,JobTitle,Manager,StartDate,EndDate,Status,Country
+E1001,Jane Doe,Finance,Accounts Payable Clerk,finance.lead@contoso.com,2026-12-01,,Joiner,IE
+E0874,Aoife Murphy,Finance,Financial Analyst,finance.lead@contoso.com,2024-03-04,,Mover,IE
+E0512,Liam Byrne,Sales,Account Executive,sales.lead@contoso.com,2023-06-12,2026-11-06,Leaver,IE
+E1002,Sara Costa,Engineering,Support Engineer,engineering.lead@contoso.com,2026-12-01,,Joiner,PT
+,John Smith,Marketing,Designer,marketing.lead@contoso.com,2026-12-01,,Joiner,IE
