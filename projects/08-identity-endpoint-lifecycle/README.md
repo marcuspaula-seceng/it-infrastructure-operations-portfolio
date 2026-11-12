@@ -110,6 +110,7 @@ how the tools I used map to a Microsoft Intune and Jamf environment:
 
 ## Public demonstration artefacts
 
+- [`identity-endpoint-lifecycle-flow.pdf`](identity-endpoint-lifecycle-flow.pdf) - a one-page flowchart of the joiner, leaver and support steps.
 - [`joiner-leaver-runbook.md`](joiner-leaver-runbook.md) — a generic,
   step-by-step joiner and leaver runbook, written as a reference for an
   Entra ID, Microsoft 365, Intune and Jamf environment.
