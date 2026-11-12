@@ -22,6 +22,8 @@ business on one side, and the employee who raises the request on the other.
 This is proactive learning. It is a lab with synthetic data, not a claim about
 a production system.
 
+**Learning path:** I am taking about 50 hours of hands-on Jira courses (in progress) and applying each topic here. See [learning-path.md](learning-path.md).
+
 ## Evidence at a glance
 
 Every claim in this project has a screenshot from the lab site. Full detail is
