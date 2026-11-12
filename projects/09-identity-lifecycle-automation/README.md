@@ -8,10 +8,12 @@
 ## Executive summary
 
 At TikTok (IT Operations Engineer, Dublin, EMEA, March 2023 to September 2026)
-I did joiner and leaver steps by hand in Microsoft Entra ID and Microsoft 365:
+I ran joiner and leaver steps in Microsoft Entra ID and Microsoft 365:
 creating and disabling accounts, assigning licences, adding people to security
-groups, distribution lists and shared mailboxes, and then the device wipe and
-return. This lab shows how I would automate those steps with Microsoft Graph
+groups, distribution lists and shared mailboxes, and then the device lock, wipe
+and return with Apple Business Manager + Puppet (Mac) and BitLocker / MBAM
+(Windows). This lab reaches the same outcome with a different tool: it shows how
+I would automate those steps with Microsoft Graph
 PowerShell: a PowerShell module that reads an HR feed (CSV), plans the actions
 for each person, runs them with `-WhatIf` by default, turns failures into a
 ticket list, and checks afterwards that leavers have lost access.
@@ -235,9 +237,10 @@ CI runs the same tests on `ubuntu-latest` with PowerShell 7
 - **Lab only, no tenant.** The Graph and Exchange calls are checked against
   mocks, not against Microsoft 365. Parameter names follow the Microsoft Graph
   PowerShell SDK v2; a real tenant run is needed to confirm behaviour.
-- **Intune device wipe is new to me — design only.** At TikTok I did device
-  wipe and return by hand, and I did not administer Intune. Here the device
-  step is a hand-off to the service desk, not an Intune remote wipe.
+- **Device wipe: familiar — same process, different system.** At TikTok I did
+  lock, wipe and return with Apple Business Manager + Puppet (Mac) and
+  BitLocker / MBAM (Windows). Here the device step is a hand-off to the
+  service desk, not an Intune remote wipe.
 - **No HR integration.** The HR feed is a CSV file. A real setup would take
   the feed from the HR system; that is not built here.
 - Shared mailbox access for joiners is not automated (it needs owner
