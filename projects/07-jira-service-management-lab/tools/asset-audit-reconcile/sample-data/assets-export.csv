@@ -1,0 +1,9 @@
+Name,Status,Location,Assigned to
+LT-0001,In repair,Dublin Office,Jane Doe
+LT-0002,In use,Remote (Ireland),Aoife Murphy
+LT-0003,In use,Dublin Office,John Smith
+LT-0004,In use,Dublin Office,Liam Byrne
+LT-0005,In repair,Dublin Office,Sara Costa
+LT-0006,In stock,IT Storage Room,
+LT-0007,In stock,IT Storage Room,
+LT-0008,Retired,IT Storage Room,

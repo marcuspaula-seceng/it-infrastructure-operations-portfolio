@@ -41,6 +41,12 @@ jobs:
       - name: Run Project 06 executor and lifecycle tests
         run: python projects/06-itam-itsm-sqlite-research/tests/test_run_lab.py
 
+      - name: Run Project 07 Assets audit reconcile tests
+        run: |
+          python -m unittest discover \
+            -s projects/07-jira-service-management-lab/tools/asset-audit-reconcile/tests \
+            -p "test_*.py" -v
+
   powershell:
     runs-on: ubuntu-latest
     steps:

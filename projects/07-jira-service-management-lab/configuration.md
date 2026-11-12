@@ -160,13 +160,12 @@ corrected (see the evidence file).
 | Confluence plan | Free |
 | Space | IT Help Centre (knowledge base purpose) |
 | Link type | External knowledge base (visible to customers in the portal) |
-| Articles | How to reset your password · How to connect to the VPN when working remotely · My laptop is slow - first steps |
+| Articles | How to reset your password · How to connect to the VPN when working remotely · My laptop is slow - first steps · How to find your laptop asset tag and report a problem · How to return your laptop when you leave |
 
 ## 7. Next steps (not yet configured)
 
-- Assets schema for laptops, imported from the device-management tool, linked
-  to the Laptop or device issue form.
-- Offboarding flow mirroring the onboarding flow.
+- Import laptops into Assets from a device-management tool (the schema and its
+  link to the Laptop or device issue form are done; see section 8).
 
 ## 8. Assets (CMDB)
 
@@ -199,3 +198,91 @@ Schema **IT Assets** (key `ITA`). All objects are synthetic.
 | Condition | JQL: `"Request Type" = "Laptop or device issue" AND Laptop is not EMPTY` |
 | Branch | AQL on IT Assets: `objectType = "Laptop" AND Key IN ({{issue.customfield_10106.Key}})` |
 | Action | Edit object: Status = In repair |
+
+### Audit and lifecycle attributes (added for Step 13)
+
+| Attribute | Values |
+|---|---|
+| Last audit date | Date of the last physical check |
+| Audit result | Found / Found - wrong location / Missing |
+| Condition | Condition of the laptop, for example Good |
+
+## 9. IT Operations (ITSM) space
+
+A second service space for incidents, problems and changes, kept apart from the
+employee request space `IT`. All work items are synthetic and end in "(test)".
+
+| Setting | Value |
+|---|---|
+| Space name | IT Operations (ITSM) |
+| Space key | `ITSM` |
+| Components | Office Network, VPN Server |
+| Major incident fields used | Priority Highest, Impact Extensive / Widespread, Major incident flag |
+| SLAs seen on the major incident `ITSM-2` | Time to first response 2h, Time to resolution 4h |
+| SLA on normal changes | Time to approve normal change: 40h |
+
+Work items:
+
+| Key | Type | Summary | Links |
+|---|---|---|---|
+| `ITSM-1` | Incident | Office internet dropped for 10 minutes (test) | Caused by `ITSM-5` |
+| `ITSM-2` | Incident (major) | Office has no internet and users cannot connect to the VPN (test) | Caused by `ITSM-5` |
+| `ITSM-3` | Incident | Cannot sign in to Microsoft 365 from the office (test) | Caused by `ITSM-5` |
+| `ITSM-4` | Change | Firmware update on the office firewall (test) | Relates to `ITSM-5` |
+| `ITSM-5` | Problem | Recurring loss of office internet (test) | Causes `ITSM-1/2/3`; relates to `ITSM-4` |
+
+## 10. Change workflow and CAB approval
+
+Change `ITSM-4` was raised with the request type **Upgrade or change a managed
+system**.
+
+| Field | Value |
+|---|---|
+| Change type | Normal |
+| Risk | Medium |
+| Change reason | Upgrade |
+| Implementation plan | Back up the configuration; update out of hours (Saturday 08:00–09:00); test internet, VPN and Wi-Fi |
+| Rollback plan | Restore the previous firmware and the saved configuration |
+| Communication | Notify staff two days before and when complete |
+| Planned start | 21 Nov 2026 08:00 |
+| Actual start / end | 08:05 / 08:40 |
+
+```mermaid
+flowchart LR
+    A[Peer review] --> B[Planning]
+    B --> C{Awaiting<br/>CAB approval}
+    C -- approved --> D[Awaiting<br/>implementation]
+    D --> E[Implementing]
+    E --> F[Resolved]
+```
+
+The diagram shows the path `ITSM-4` took, read from its history. It does not
+show every transition in the workflow.
+
+## 11. Scan-based audit procedure
+
+The audit compares what is physically found with the **Laptop** objects in
+Assets and records the result on each object. Full steps:
+[`procedures/scan-based-asset-audit.md`](procedures/scan-based-asset-audit.md).
+
+| Result | Meaning | Action recorded in the lab |
+|---|---|---|
+| Found | Laptop found where Assets says it is | Set Audit result and Last audit date |
+| Found - wrong location | Laptop found somewhere else | Correct the register (`LT-0001`) or move the laptop back (`LT-0006`) |
+| Missing | Laptop not found | Raise a follow-up ticket (`LT-0007` → `IT-14`) |
+
+Audit of 12 Nov 2026 on 8 synthetic laptops: 5 Found (one of them the retired `LT-0008`,
+seen in the IT Storage Room), 2 Found - wrong location, 1 Missing.
+
+The reconcile tool in
+[`tools/asset-audit-reconcile/`](tools/asset-audit-reconcile/) does the
+comparison from a scan CSV and an Assets export, and adds a fourth result,
+**Unexpected**, for a scanned tag that is not in Assets.
+
+## 12. Reports and dashboard
+
+| Item | Content |
+|---|---|
+| Custom report | SLA: first response met vs breached (series Met, Breached) |
+| Dashboard | IT service desk overview (lab): created vs resolved chart; pie chart of work items by work type |
+| Result seen | Report: 0 Met, 12 Breached (test requests never got a first public reply). Dashboard: 14 created, 0 resolved in 30 days |

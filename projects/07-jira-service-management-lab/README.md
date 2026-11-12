@@ -3,13 +3,24 @@
 ## Executive summary
 
 After completing Jira Service Management training, I built and tested an IT
-service desk on a personal Jira Service Management Cloud site (Free plan) to
-practise the administration side of a tool I used daily as an agent. The lab covers request types and portal groups, response and
-resolution SLAs on a Dublin working-hours calendar, a JQL-based queue for SLA
-risk, joiner and leaver automation flows, and a manager-approval step on access
-requests, a Confluence knowledge base for self-service, and an Assets (CMDB)
-laptop schema linked to the device request form. Every configuration
-item was checked end to end with synthetic test requests.
+service desk on a personal Jira Service Management Cloud site (Free plan, now
+on a 30-day Premium trial) to practise the administration side of a tool I
+used daily as an agent. The lab covers request types and portal groups,
+response and resolution SLAs on a Dublin working-hours calendar, a JQL-based
+queue for SLA risk, joiner and leaver automation flows, a manager-approval step
+on access requests, a Confluence knowledge base for self-service, and an Assets
+(CMDB) laptop schema linked to the device request form. A second space covers
+a major incident, a problem with its root cause and a normal change with CAB
+approval. Asset procedures cover a scan-based laptop audit and laptop return on
+the Leaver request. Every item was checked end to end with synthetic data.
+
+## Why I built this
+
+After years using Jira every day as an agent in IT operations at TikTok, I am
+learning the admin side. I want to understand both sides: the IT team and the
+business on one side, and the employee who raises the request on the other.
+This is proactive learning. It is a lab with synthetic data, not a claim about
+a production system.
 
 ## Evidence at a glance
 
@@ -31,6 +42,13 @@ in the [build log](build-log.md) and the [test results](evidence/owner-cloud-res
 | All automation flows enabled | [Flows list](screenshots/10-automation-flows-list.jpg) |
 | Confluence knowledge base — tested | [Articles](screenshots/18-knowledge-base-articles.jpg) · [Portal search shows the article](screenshots/19-test-portal-self-help-search.jpg) |
 | Assets (CMDB): laptop schema linked to requests — tested | [Laptop objects](screenshots/20-assets-laptop-schema.jpg) · [Field and AQL scope](screenshots/21-assets-field-configuration.jpg) · [Portal picker](screenshots/22-portal-laptop-picker.jpg) · [Flow](screenshots/23-automation-laptop-in-repair-flow.jpg) · [Test IT-13: laptop set to In repair](screenshots/24-test-IT-13-laptop-in-repair.jpg) |
+| Major incident with SLAs and a timeline — tested | [ITSM-2](screenshots/25-major-incident-ITSM-2.jpg) · [Timeline](screenshots/26-major-incident-timeline.jpg) |
+| Problem with root cause, workaround and linked incidents | [ITSM-5](screenshots/27-problem-ITSM-5-root-cause.jpg) |
+| Normal change through CAB approval — tested | [ITSM-4](screenshots/28-change-ITSM-4.jpg) · [History](screenshots/29-change-ITSM-4-history.jpg) |
+| Scan-based laptop audit in Assets | [Audit results](screenshots/30-assets-audit-results.jpg) |
+| Laptop return on the Leaver request — tested | [LT-0003 history](screenshots/31-asset-return-LT-0003-history.jpg) |
+| Knowledge base article: return your laptop | [Article](screenshots/32-kb-return-laptop-article.jpg) |
+| SLA report and dashboard | [SLA first response: met vs breached](screenshots/33-report-sla-first-response.jpg) · [Dashboard](screenshots/34-dashboard.jpg) |
 
 ## Operational challenge
 
@@ -69,6 +87,22 @@ that configuration from scratch so each design decision can be explained.
   Laptop) with 8 synthetic laptops, an Assets field (**Laptop**) scoped with
   AQL, a required *Which laptop?* question on the device request form, and a
   flow that sets the selected laptop to **In repair** when a request is raised.
+- Built a second space, **IT Operations (ITSM)**, and ran one office outage
+  through it: three incidents, one flagged as the **major incident** with a
+  timed timeline; a **problem** with root cause, workaround and linked
+  incidents; and a **normal change** (firewall firmware update) with plan,
+  rollback and communication, through CAB approval to Resolved.
+- Added audit attributes to the Laptop object type and recorded a synthetic
+  scan-based audit (Found / Found - wrong location / Missing), with a
+  follow-up ticket for the missing laptop.
+- Processed a laptop return on the Leaver request: the laptop went back to
+  stock with no owner, the right location and its condition recorded.
+- Wrote two more knowledge base articles (find your asset tag; return your
+  laptop), plus a [user guide](manuals/user-guide.md), an
+  [agent runbook](manuals/agent-runbook.md), an
+  [admin guide](manuals/admin-guide.md) and an
+  [audit procedure](procedures/scan-based-asset-audit.md).
+- Built an SLA report (first response met vs breached) and a dashboard.
 - Verified every flow with synthetic requests, including one failed run that
   exposed a missing workflow transition and was fixed, and recorded the results
   in [`evidence/owner-cloud-results.md`](evidence/owner-cloud-results.md).
@@ -99,19 +133,31 @@ that configuration from scratch so each design decision can be explained.
   raising a ticket.
 - Access requests cannot be worked until approved; the platform also excluded
   the requester from approving their own request (segregation of duties).
+- One outage, three incidents: a single major incident carried the timeline
+  and the user update, and a problem linked all three to one root cause.
+- The firewall change met its approval SLA (40h) and recorded plan, rollback
+  and communication before work started.
+- The audit gave every laptop not retired an audit result and left a ticket
+  for the missing one; a returned laptop went back to stock with owner,
+  status, location and condition updated.
 
 ## Technologies and competencies
 
 - Jira Service Management Cloud (service space administration)
 - ITSM / ITIL request fulfilment and SLA management
+- Incident, major incident, problem and change management (normal change,
+  CAB approval)
 - JQL (Jira Query Language)
 - Jira automation (trigger, JQL condition, create sub-tasks, edit field,
   transition actions) and the automation audit log for troubleshooting
 - Jira workflows and approvals
 - Assets (CMDB): object schemas, reference attributes, AQL, Assets fields and
   Edit object automation
+- IT asset management procedures: scan-based audit and laptop return
+- Jira Service Management reports and dashboards
+- Python (audit reconcile tool)
 - Confluence knowledge base and self-service (ticket deflection)
-- Joiner and leaver process design (Microsoft 365, Entra ID, Intune/Jamf)
+- Joiner and leaver process design (Microsoft 365, Entra ID, device enrolment step)
 - Technical documentation
 
 ## Public demonstration artefacts
@@ -119,21 +165,38 @@ that configuration from scratch so each design decision can be explained.
 - [`build-log.md`](build-log.md) — **start here**: the build step by step,
   each step tied to the Jira Service Management training topic it applies,
   with the decision made, the reason, and a screenshot.
-- [`screenshots/`](screenshots/) — 24 screenshots of the configuration and the
+- [`screenshots/`](screenshots/) — 34 screenshots of the configuration and the
   test results.
 - [`configuration.md`](configuration.md) — the full configuration: request
-  types, portal groups, SLA calendar and goals, queue JQL and the automation
-  flow, with a Mermaid diagram of the onboarding flow.
+  types, portal groups, SLA calendar and goals, queue JQL, automation flows,
+  Assets, the ITSM space, the change workflow and the audit procedure, with
+  Mermaid diagrams.
 - [`evidence/owner-cloud-results.md`](evidence/owner-cloud-results.md) — the
-  end-to-end test and its observed result.
+  end-to-end tests and their observed results.
+- [`manuals/`](manuals/) — [user guide](manuals/user-guide.md),
+  [agent runbook](manuals/agent-runbook.md) and
+  [admin guide](manuals/admin-guide.md).
+- [`procedures/scan-based-asset-audit.md`](procedures/scan-based-asset-audit.md)
+  — the audit procedure, mapped to real work in
+  [Project 02](../02-asset-management-audit/README.md).
+- [`tools/asset-audit-reconcile/`](tools/asset-audit-reconcile/) — a Python
+  tool that compares a scan CSV with an Assets export: Found, Found - wrong
+  location, Missing or Unexpected.
+
+## Related projects
+
+| This lab | Real work |
+|---|---|
+| Scan-based laptop audit in Assets | [Project 02](../02-asset-management-audit/README.md): scan-based asset audit at TikTok, more than 5,000 assets, 99% stock and audit visibility |
+| Laptop return on the Leaver request | [Project 04](../04-asset-return-redeployment/README.md): asset return and redeployment workflow at TikTok across three sites |
 
 ## Scope and limitations
 
-Configured and tested in this lab: everything listed above. Assets was added
-on a 30-day Premium trial of the site. **Not** configured here: SAML SSO or
-SCIM provisioning from Entra ID.
+Configured and tested in this lab: everything listed above. The site started
+on the Free plan and now runs on a 30-day Premium trial, which added Assets.
+**Not** configured here: SAML SSO or SCIM provisioning from Entra ID.
 These are documented as next steps rather than claimed.
 
-> This lab runs on a personal Free-plan site created for portfolio purposes. It
-> contains no employer data; the only work item data is a synthetic test
-> request.
+> This lab runs on a personal site created for portfolio purposes. It
+> contains no employer data; every work item, person, location and asset is
+> synthetic.

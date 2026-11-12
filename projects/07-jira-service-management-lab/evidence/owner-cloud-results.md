@@ -1,7 +1,8 @@
 # Project 07 — Owner test results (Jira Service Management Cloud)
 
-**Date:** 11 November 2026
-**Environment:** personal Jira Service Management Cloud site, Free plan
+**Date:** 11 November 2026 (Assets audit: 12 November 2026)
+**Environment:** personal Jira Service Management Cloud site, Free plan, then
+a 30-day Premium trial for Assets and the later tests
 
 ## Test: onboarding automation end to end
 
@@ -68,3 +69,69 @@ due times calculated in working hours rather than elapsed time.
 | 4 | Check the laptop status after the flow ran | In repair | `LT-0001` status **In repair** (read back from Assets and shown on `IT-13`) |
 
 **Result:** pass. All data is synthetic.
+
+## Test: major incident `ITSM-2`
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Raise `ITSM-1`, `ITSM-3` and `ITSM-2` in the IT Operations (ITSM) space | Three incidents created | Created, each ending in "(test)" |
+| 2 | Set `ITSM-2` as the major incident | Priority Highest, impact Extensive / Widespread, Major incident flag on | All three values set |
+| 3 | Check SLAs on `ITSM-2` | First response and resolution targets shown | Time to first response within 2h; time to resolution within 4h |
+| 4 | Add the timeline in comments | Internal notes for IT, one public reply for users | 09:20 and 09:50 internal notes; public reply "Service restored at 09:50. ISP fault on their side. Root cause follow-up in problem ITSM-5." |
+| 5 | Complete the incidents | `ITSM-1`, `ITSM-2`, `ITSM-3` completed | Completed |
+
+**Result:** pass. Screenshots 25 and 26.
+
+## Test: problem `ITSM-5`
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Raise problem `ITSM-5` | Problem created | Priority High, status Under review |
+| 2 | Record root cause and workaround | Both fields filled | Root cause: recurring ISP line fault with only one office internet line. Workaround: mobile hotspot; cloud apps work from outside the office |
+| 3 | Link related work items | Incidents and change linked | Causes `ITSM-1`, `ITSM-2`, `ITSM-3`; relates to `ITSM-4` |
+
+**Result:** pass. Screenshot 27.
+
+## Test: normal change `ITSM-4`
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Raise `ITSM-4` with the request type *Upgrade or change a managed system* | Change created | Change type Normal, risk Medium, reason Upgrade |
+| 2 | Fill plan, rollback and communication | All three filled | Back up config, update Saturday 08:00–09:00, test internet/VPN/Wi-Fi; restore previous firmware and config; notify staff two days before and when complete |
+| 3 | Move the change through the workflow | Each status in order | Peer review → Planning → Awaiting CAB approval → Awaiting implementation → Implementing → Resolved (from the history) |
+| 4 | Record dates | Planned and actual dates on the change | Planned start 21 Nov 2026 08:00; actual start 08:05; actual end 08:40 |
+| 5 | Check the approval SLA | Time to approve normal change (40h) met | Met |
+
+**Result:** pass. Screenshots 28 and 29.
+
+## Test: scan-based laptop audit
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Add Last audit date, Audit result and Condition to the Laptop object type | Attributes available on all laptops | Added |
+| 2 | Record the audit of 12 Nov 2026 for the 8 laptops | One Audit result per laptop | 5 Found (including the retired `LT-0008`), 2 Found - wrong location, 1 Missing |
+| 3 | Fix the two wrong locations | Register or laptop corrected | `LT-0001`: register corrected to IT Storage Room. `LT-0006`: laptop moved back to storage |
+| 4 | Follow up the missing laptop | Ticket raised | `LT-0007` → `IT-14` |
+
+**Result:** pass. Screenshot 30.
+
+## Test: laptop return on the Leaver request
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Complete sub-task `IT-9` on the Leaver request `IT-6` | Sub-task done | Done |
+| 2 | Update `LT-0003` in Assets | Laptop back in stock, no owner | Assigned to John Smith → None; Status In use → In stock; Location Dublin Office → IT Storage Room; Condition Good; Audit result Found |
+| 3 | Check the object history | Each change listed | All changes shown in the `LT-0003` history |
+
+**Result:** pass. Screenshot 31.
+
+## Test: knowledge base articles for assets
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Publish *How to find your laptop asset tag and report a problem* in the IT Help Centre | Article in the knowledge base | Published |
+| 2 | Publish *How to return your laptop when you leave* | Article in the knowledge base | Published: Leaver request by the manager, steps before and on the last day, what IT does after the return |
+
+**Result:** pass. Screenshot 32.
+
+All data in these tests is synthetic.

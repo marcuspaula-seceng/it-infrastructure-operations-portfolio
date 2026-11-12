@@ -5,8 +5,9 @@ Management training, I wanted to apply each topic on a real site rather than
 only read about it, so every step below starts from a training topic, records
 the decision I made and why, and ends with a check that it works.
 
-Built on 11 November 2026 on a personal Jira Service Management Cloud site
-(Free plan). Every work item in the screenshots is synthetic test data.
+Started on 11 November 2026 on a personal Jira Service Management Cloud site
+(Free plan, moved to a 30-day Premium trial at Step 11). Every work item,
+person and asset in the screenshots is synthetic test data.
 
 | Step | Training topic | What I built |
 |---|---|---|
@@ -21,6 +22,9 @@ Built on 11 November 2026 on a personal Jira Service Management Cloud site
 | 9 | Testing and troubleshooting | End-to-end tests, audit log, fix |
 | 10 | Knowledge base and self-service | Confluence knowledge base linked to the portal |
 | 11 | Assets (CMDB) | Laptop schema, Assets field on the request form, automation, end-to-end test |
+| 12 | Incident, problem and change management | IT Operations (ITSM) space: major incident, problem, normal change with CAB approval |
+| 13 | IT asset management procedures | Scan-based laptop audit in Assets, laptop return on the Leaver request, two knowledge base articles |
+| 14 | Reports and dashboards | SLA first response report and a service desk dashboard |
 
 ---
 
@@ -312,10 +316,173 @@ changed the laptop's status to **In repair**.
 
 ---
 
+## Step 12 — Incident, problem and change (ITSM)
+
+**Training topic:** incident management restores service fast; problem
+management finds the root cause behind repeat incidents; change management
+controls risk before a change is made.
+
+**What I did:**
+
+1. Created a second service space, **IT Operations (ITSM)** (key `ITSM`), for
+   incidents, problems and changes, with two components: **Office Network** and
+   **VPN Server**.
+2. Raised three synthetic incidents about the same outage:
+   - `ITSM-1` *Office internet dropped for 10 minutes (test)*
+   - `ITSM-3` *Cannot sign in to Microsoft 365 from the office (test)*
+   - `ITSM-2` *Office has no internet and users cannot connect to the VPN
+     (test)*
+3. Treated `ITSM-2` as the major incident: priority **Highest**, impact
+   **Extensive / Widespread**, **Major incident** flag on. Its SLAs were time to
+   first response within 2h and time to resolution within 4h.
+4. Recorded the timeline in comments:
+
+   | Time | Entry | Visibility |
+   |---|---|---|
+   | 09:00 | Incident starts | — |
+   | 09:20 | ISP line down at the router; ISP ticket raised with evidence (WAN down, no sync); Group IT informed | Internal note |
+   | 09:50 | ISP fixed a fault on their side; WAN up, VPN up, test sign-in to Microsoft 365 OK | Internal note |
+   | 09:50 | "Service restored at 09:50. ISP fault on their side. Root cause follow-up in problem ITSM-5." | Public reply |
+
+5. Completed all three incidents.
+
+![Major incident ITSM-2](screenshots/25-major-incident-ITSM-2.jpg)
+
+![Major incident timeline in comments](screenshots/26-major-incident-timeline.jpg)
+
+6. Raised problem `ITSM-5` *Recurring loss of office internet (test)*,
+   priority **High**, status **Under review**:
+   - **Root cause:** the ISP line had a recurring fault, and the office has
+     only one internet line. Every fault stops internet, VPN and Microsoft 365
+     sign-in in the office.
+   - **Workaround:** mobile hotspot for urgent work; cloud apps still work from
+     outside the office.
+   - **Links:** causes `ITSM-1`, `ITSM-2` and `ITSM-3`; relates to `ITSM-4`.
+
+![Problem ITSM-5 with root cause and workaround](screenshots/27-problem-ITSM-5-root-cause.jpg)
+
+7. Raised change `ITSM-4` *Firmware update on the office firewall (test)* with
+   the request type **Upgrade or change a managed system**: change type
+   **Normal**, risk **Medium**, reason **Upgrade**.
+   - **Plan:** back up the configuration, update out of hours (Saturday
+     08:00–09:00), then test internet, VPN and Wi-Fi.
+   - **Rollback:** restore the previous firmware and the saved configuration.
+   - **Communication:** notify staff two days before and when complete.
+   - **Dates recorded on the change:** planned start 21 Nov 2026 08:00, actual
+     start 08:05, actual end 08:40.
+8. Moved the change through the workflow: peer review → **Planning** →
+   **Awaiting CAB approval** → **Awaiting implementation** → **Implementing** →
+   **Resolved**.
+
+![Change ITSM-4](screenshots/28-change-ITSM-4.jpg)
+
+![Change ITSM-4 history through the workflow](screenshots/29-change-ITSM-4-history.jpg)
+
+**Why:** in IT operations one outage often arrives as several tickets from
+different people. Marking one as the major incident keeps the communication in
+one place. Linking the incidents to a problem stops the team from closing the
+same fault again and again. The firewall change shows that a change has a plan,
+a rollback and a communication step before anyone touches the device.
+
+**Test:** `ITSM-2` showed both SLAs (2h first response, 4h resolution) and
+the full timeline; all three incidents were completed. `ITSM-5` shows the three
+incidents as linked work items. The `ITSM-4` history shows every workflow
+status in order, and the SLA **Time to approve normal change** (40h) was met.
+
+---
+
+## Step 13 — Asset audit and laptop return
+
+**Training topic:** Assets keeps the inventory true only if the team checks it
+against the real world and updates it at every lifecycle event.
+
+**What I did:**
+
+1. Added three attributes to the **Laptop** object type: **Last audit date**,
+   **Audit result** (Found / Found - wrong location / Missing) and
+   **Condition**.
+2. Recorded a synthetic scan-based audit of the 8 laptops on 12 Nov 2026:
+
+   | Result | Laptops | Action |
+   |---|---|---|
+   | Found | 5 | Includes `LT-0008` (Retired), seen in the IT Storage Room |
+   | Found - wrong location | 2 | `LT-0001`: register corrected to IT Storage Room. `LT-0006`: laptop moved back to storage |
+   | Missing | 1 | `LT-0007`: follow-up ticket `IT-14` raised |
+
+   `LT-0008` has the status **Retired**.
+
+![Assets audit results](screenshots/30-assets-audit-results.jpg)
+
+3. Processed a laptop return on the Leaver request `IT-6`. When sub-task `IT-9`
+   (*Collect laptop, wipe device and update Assets*) was done, `LT-0003` changed
+   as follows:
+
+   | Attribute | Before | After |
+   |---|---|---|
+   | Assigned to | John Smith | None |
+   | Status | In use | In stock |
+   | Location | Dublin Office | IT Storage Room |
+   | Condition | (new attribute) | Good |
+   | Audit result | (new attribute) | Found |
+
+![LT-0003 history after the return](screenshots/31-asset-return-LT-0003-history.jpg)
+
+4. Wrote two articles in the **IT Help Centre**: *How to find your laptop asset
+   tag and report a problem* and *How to return your laptop when you leave*.
+
+![Knowledge base article: return your laptop](screenshots/32-kb-return-laptop-article.jpg)
+
+**Why:** an inventory nobody audits drifts away from reality. Two kinds of
+"wrong location" need different fixes: sometimes the register is wrong,
+sometimes the laptop is. A returned laptop that stays assigned to a leaver is
+invisible stock, so the return must update owner, status, location and
+condition in one step.
+
+**Test:** the Assets history for `LT-0003` shows each attribute change. The
+audit view shows the Audit result for all laptops, and `IT-14` exists for the
+missing laptop.
+
+A small Python tool, [`tools/asset-audit-reconcile/`](tools/asset-audit-reconcile/),
+compares a scan CSV against an Assets export and sorts each laptop into Found,
+Found - wrong location, Missing or Unexpected. The full procedure is in
+[`procedures/scan-based-asset-audit.md`](procedures/scan-based-asset-audit.md).
+
+---
+
+## Step 14 — Reports and dashboard
+
+**Training topic:** reports show whether the service desk meets its targets;
+dashboards put the key numbers on one page.
+
+**What I did:**
+
+1. Created a custom report, **SLA: first response met vs breached**, with two
+   series: **Met** and **Breached**.
+2. Created a dashboard, **IT service desk overview (lab)**, with a created vs
+   resolved chart and a pie chart of work items by work type.
+
+![Report: SLA first response met vs breached](screenshots/33-report-sla-first-response.jpg)
+
+![Service desk dashboard](screenshots/34-dashboard.jpg)
+
+**Why:** an SLA is only useful if someone looks at the result. Met vs breached
+shows the trend; created vs resolved shows whether the backlog grows.
+
+**Result:** the report showed 0 Met and 12 Breached for first response. That is
+correct for the lab: the test requests were raised to test forms and flows, and
+nobody sent a first public reply within the target. In a real desk this is the
+signal to look at the *SLA at risk – unassigned* queue and at staffing. The
+dashboard showed 14 work items created and 0 resolved in the last 30 days, split
+into 8 sub-tasks, 4 requests and incidents and 2 access requests. Requests by
+request type is not a statistic in the pie chart gadget, so the chart uses work
+type; a by-request-type view is available in the built-in service space reports.
+
+---
+
 ## What I would do next
 
 - **Assets:** a flow that sets the laptop back to *In use* when the request is
-  resolved, and laptop return on the Leaver request.
+  resolved.
 - **Knowledge base:** more articles, with categories, and reporting on which
   searches end without an article.
 - **SSO and SCIM** from Entra ID so access to the service desk follows the
