@@ -36,7 +36,7 @@ conventions. Every sample dataset is entirely synthetic. See
 | 07 | [Jira Service Management Lab — IT Service Desk Build](projects/07-jira-service-management-lab/README.md) | ITSM configuration and automation | Request types, response and resolution SLAs on a Dublin calendar, JQL queue, joiner/leaver automation, access approval workflow, Confluence knowledge base, test evidence |
 | 08 | [Identity & Endpoint Lifecycle — Entra ID, Microsoft 365, Apple Business Manager, Puppet, BitLocker](projects/08-identity-endpoint-lifecycle/README.md) | Joiner, mover and leaver across Windows and macOS | Lifecycle diagram, tool mapping to Intune/Jamf, joiner/leaver runbook, troubleshooting guide, read-only Microsoft Graph PowerShell script |
 
-**Experience flow (PDF):** [Marcus Paula - experience flow](docs/Marcus_Paula_Experience_Flow.pdf), a one-page map from my real work at TikTok and Hylas, my Jira Service Management Cloud site and these projects to the areas of a Senior IT Operations Engineer role, with a question-by-question table and links.
+**Experience flow (PDF):** [Marcus Paula - experience flow](docs/Marcus_Paula_Experience_Flow.pdf), a map from my real work at TikTok and Hylas, my Jira Service Management lab and education to the evidence in these projects, with an area-by-area table and links.
 
 ---
 
