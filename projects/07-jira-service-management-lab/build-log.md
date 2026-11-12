@@ -20,6 +20,7 @@ Built on 11 November 2026 on a personal Jira Service Management Cloud site
 | 8 | Workflows and approvals | Access request approval workflow and flow |
 | 9 | Testing and troubleshooting | End-to-end tests, audit log, fix |
 | 10 | Knowledge base and self-service | Confluence knowledge base linked to the portal |
+| 11 | Assets (CMDB) | Laptop schema, Assets field on the request form, automation, end-to-end test |
 
 ---
 
@@ -256,10 +257,65 @@ raised.
 
 ---
 
+## Step 11 — Assets: laptops linked to requests
+
+**Training topic:** Assets is the configuration management database (CMDB) in
+Jira Service Management. Object schemas hold object types (for example laptops
+and people), each with attributes; an Assets custom field lets a request point
+at a real object.
+
+**What I did:**
+
+1. Started a 30-day Premium trial on the site, which includes Assets, and gave
+   my account the **Assets App admin** role in Atlassian Administration (Assets
+   is now a separate platform app, so the role must be granted there).
+2. Created an object schema, **IT Assets** (key `ITA`), with four object types:
+   **Location**, **Employee**, **Model** and **Laptop**.
+3. Gave **Laptop** the attributes an IT team needs: serial number (unique),
+   model, assigned to, location, status (In use, In stock, In repair, Retired),
+   encryption (FileVault or BitLocker), managed by, purchase date and warranty
+   end. Model, Assigned to and Location are references to the other object
+   types, so the schema shows who has which laptop and where it is.
+4. Loaded synthetic data: 3 locations, 4 models, 5 employees and 8 laptops
+   (in use, in stock, in repair and retired).
+
+![Laptop objects in the IT Assets schema](screenshots/20-assets-laptop-schema.jpg)
+
+5. Created an **Assets objects** custom field, **Laptop**, scoped with AQL to
+   `objectType = "Laptop" AND Status != "Retired"`, searchable by name and
+   serial number, and showing serial number, model, assigned to and status on
+   the work item.
+
+![Assets field configuration with the AQL filter scope](screenshots/21-assets-field-configuration.jpg)
+
+6. Added the field to the **Laptop or device issue** request form as a required
+   question, *Which laptop?*, with help text, and removed the old free-text
+   hardware field.
+
+![Customer portal: the employee picks the laptop by asset tag](screenshots/22-portal-laptop-picker.jpg)
+
+7. Built a flow, **Laptop issue - set asset status to In repair**: when a
+   Laptop or device issue is created with a laptop selected, an AQL branch finds
+   that laptop and an **Edit object** action sets its status to *In repair*.
+
+![Automation flow: AQL branch and Edit object](screenshots/23-automation-laptop-in-repair-flow.jpg)
+
+**Why:** a free-text "affected hardware" box gives agents nothing to work with.
+Linking the request to the real asset shows the serial number, model and owner
+straight away, and keeps the inventory status correct without manual updates.
+
+**Test:** raised `IT-13` in the portal for `LT-0001` (status *In use*). The work
+item shows the laptop with its serial number, model and owner, and the flow
+changed the laptop's status to **In repair**.
+
+![IT-13 with the linked laptop now In repair](screenshots/24-test-IT-13-laptop-in-repair.jpg)
+
+---
+
 ## What I would do next
 
-- **Assets (CMDB):** a laptop object schema linked to the Laptop or device
-  issue form (requires the Premium plan on this site).
+- **Assets:** a flow that sets the laptop back to *In use* when the request is
+  resolved, and laptop return on the Leaver request.
 - **Knowledge base:** more articles, with categories, and reporting on which
   searches end without an article.
 - **SSO and SCIM** from Entra ID so access to the service desk follows the

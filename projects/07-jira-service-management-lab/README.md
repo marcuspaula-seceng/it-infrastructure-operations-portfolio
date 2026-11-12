@@ -7,7 +7,8 @@ service desk on a personal Jira Service Management Cloud site (Free plan) to
 practise the administration side of a tool I used daily as an agent. The lab covers request types and portal groups, response and
 resolution SLAs on a Dublin working-hours calendar, a JQL-based queue for SLA
 risk, joiner and leaver automation flows, and a manager-approval step on access
-requests, and a Confluence knowledge base for self-service. Every configuration
+requests, a Confluence knowledge base for self-service, and an Assets (CMDB)
+laptop schema linked to the device request form. Every configuration
 item was checked end to end with synthetic test requests.
 
 ## Evidence at a glance
@@ -29,6 +30,7 @@ in the [build log](build-log.md) and the [test results](evidence/owner-cloud-res
 | Troubleshooting: failed run, root cause, fix | [Audit log](screenshots/17-audit-log-failure-and-fix.jpg) |
 | All automation flows enabled | [Flows list](screenshots/10-automation-flows-list.jpg) |
 | Confluence knowledge base — tested | [Articles](screenshots/18-knowledge-base-articles.jpg) · [Portal search shows the article](screenshots/19-test-portal-self-help-search.jpg) |
+| Assets (CMDB): laptop schema linked to requests — tested | [Laptop objects](screenshots/20-assets-laptop-schema.jpg) · [Field and AQL scope](screenshots/21-assets-field-configuration.jpg) · [Portal picker](screenshots/22-portal-laptop-picker.jpg) · [Flow](screenshots/23-automation-laptop-in-repair-flow.jpg) · [Test IT-13: laptop set to In repair](screenshots/24-test-IT-13-laptop-in-repair.jpg) |
 
 ## Operational challenge
 
@@ -63,6 +65,10 @@ that configuration from scratch so each design decision can be explained.
 - Created a Confluence knowledge base (**IT Help Centre**), linked it to the
   portal and wrote three self-help articles: password reset, VPN and slow
   laptop.
+- Built an **Assets** object schema (**IT Assets**: Location, Employee, Model,
+  Laptop) with 8 synthetic laptops, an Assets field (**Laptop**) scoped with
+  AQL, a required *Which laptop?* question on the device request form, and a
+  flow that sets the selected laptop to **In repair** when a request is raised.
 - Verified every flow with synthetic requests, including one failed run that
   exposed a missing workflow transition and was fixed, and recorded the results
   in [`evidence/owner-cloud-results.md`](evidence/owner-cloud-results.md).
@@ -102,6 +108,8 @@ that configuration from scratch so each design decision can be explained.
 - Jira automation (trigger, JQL condition, create sub-tasks, edit field,
   transition actions) and the automation audit log for troubleshooting
 - Jira workflows and approvals
+- Assets (CMDB): object schemas, reference attributes, AQL, Assets fields and
+  Edit object automation
 - Confluence knowledge base and self-service (ticket deflection)
 - Joiner and leaver process design (Microsoft 365, Entra ID, Intune/Jamf)
 - Technical documentation
@@ -111,7 +119,7 @@ that configuration from scratch so each design decision can be explained.
 - [`build-log.md`](build-log.md) — **start here**: the build step by step,
   each step tied to the Jira Service Management training topic it applies,
   with the decision made, the reason, and a screenshot.
-- [`screenshots/`](screenshots/) — 19 screenshots of the configuration and the
+- [`screenshots/`](screenshots/) — 24 screenshots of the configuration and the
   test results.
 - [`configuration.md`](configuration.md) — the full configuration: request
   types, portal groups, SLA calendar and goals, queue JQL and the automation
@@ -121,9 +129,9 @@ that configuration from scratch so each design decision can be explained.
 
 ## Scope and limitations
 
-Configured and tested in this lab: everything listed above. **Not** configured
-here: Assets (CMDB) object schemas (a Premium feature on this plan) and SAML SSO
-or SCIM provisioning from Entra ID.
+Configured and tested in this lab: everything listed above. Assets was added
+on a 30-day Premium trial of the site. **Not** configured here: SAML SSO or
+SCIM provisioning from Entra ID.
 These are documented as next steps rather than claimed.
 
 > This lab runs on a personal Free-plan site created for portfolio purposes. It

@@ -57,3 +57,14 @@ due times calculated in working hours rather than elapsed time.
 | 2 | Search the customer portal for *password* | Matching article shown before a request is raised | *How to reset your password* shown under **Self-help resources** with a content preview |
 
 **Result:** pass.
+
+## Test: Assets laptop linked to a request
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Check `LT-0001` in the IT Assets schema before the test | Status In use | In use, assigned to Jane Doe, MacBook Pro 14 |
+| 2 | Raise a **Laptop or device issue** (`IT-13`) in the portal and pick `LT-0001` in *Which laptop?* | Picker finds the laptop by asset tag | One result, `LT-0001` with serial `SYN-C02X1001` |
+| 3 | Open `IT-13` as an agent | Laptop shown with its details | Serial number, model, assigned to and status shown on the work item |
+| 4 | Check the laptop status after the flow ran | In repair | `LT-0001` status **In repair** (read back from Assets and shown on `IT-13`) |
+
+**Result:** pass. All data is synthetic.

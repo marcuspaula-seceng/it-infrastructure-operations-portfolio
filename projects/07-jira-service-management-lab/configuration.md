@@ -167,3 +167,35 @@ corrected (see the evidence file).
 - Assets schema for laptops, imported from the device-management tool, linked
   to the Laptop or device issue form.
 - Offboarding flow mirroring the onboarding flow.
+
+## 8. Assets (CMDB)
+
+Schema **IT Assets** (key `ITA`). All objects are synthetic.
+
+| Object type | Attributes | Objects |
+|---|---|---|
+| Location | Name, City | 3 |
+| Employee | Name, Email, Department, Location (reference) | 5 |
+| Model | Name, Manufacturer, Operating system (macOS / Windows) | 4 |
+| Laptop | Name (asset tag), Serial number (unique), Model (reference), Assigned to (reference), Location (reference), Status (In use / In stock / In repair / Retired), Encryption (FileVault / BitLocker), Managed by, Purchase date, Warranty end | 8 |
+
+### Assets field
+
+| Setting | Value |
+|---|---|
+| Field | Laptop (`customfield_10106`), Assets objects |
+| Schema | IT Assets |
+| Filter scope (AQL) | `objectType = "Laptop" AND Status != "Retired"` |
+| Search by | Name, Serial number |
+| Shown on work item | Serial number, Model, Assigned to, Status |
+| Shown in portal | Serial number, Model |
+| Request form | Laptop or device issue: required, shown as *Which laptop?* |
+
+### Flow — Laptop issue: set asset status to In repair
+
+| Step | Configuration |
+|---|---|
+| Trigger | Work item created |
+| Condition | JQL: `"Request Type" = "Laptop or device issue" AND Laptop is not EMPTY` |
+| Branch | AQL on IT Assets: `objectType = "Laptop" AND Key IN ({{issue.customfield_10106.Key}})` |
+| Action | Edit object: Status = In repair |
