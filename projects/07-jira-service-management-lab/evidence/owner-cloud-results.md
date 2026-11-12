@@ -134,4 +134,30 @@ due times calculated in working hours rather than elapsed time.
 
 **Result:** pass. Screenshot 32.
 
+## Test: country queues and pre-assignment
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Raise `IT-15` for Ireland, `IT-16` for United Kingdom, `IT-17` for Netherlands | Each in its country queue | Each queue shows 1 work item |
+| 2 | Check the assignee | Assigned by the flow (balanced workload) | All three assigned to the engineer |
+
+**Result:** pass. Screenshots 35-36.
+
+## Test: laptop back to In use
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Resolve `IT-13` (laptop `LT-0001`, status In repair) | Flow runs | Run |
+| 2 | Check `LT-0001` in Assets | Status In use | In repair → In use |
+
+**Result:** pass. Screenshot 37.
+
+## Test: SaaS licence / external guest access request
+
+| Step | Action | Expected | Observed |
+|---|---|---|---|
+| 1 | Raise `IT-18` with the new request type | Goes into approval | In Review, waiting for 1 approval |
+| 2 | Check approvers | Requester cannot approve | Requester listed under excluded approvers |
+
+**Result:** pass. Screenshot 38.
 All data in these tests is synthetic.

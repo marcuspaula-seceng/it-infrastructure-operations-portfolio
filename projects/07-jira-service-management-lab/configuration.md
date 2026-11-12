@@ -286,3 +286,13 @@ comparison from a scan CSV and an Assets export, and adds a fourth result,
 | Custom report | SLA: first response met vs breached (series Met, Breached) |
 | Dashboard | IT service desk overview (lab): created vs resolved chart; pie chart of work items by work type |
 | Result seen | Report: 0 Met, 12 Breached (test requests never got a first public reply). Dashboard: 14 created, 0 resolved in 30 days |
+
+## 13. Organizations, country queues and new flows
+
+| Item | Content |
+|---|---|
+| Organizations | Ireland, United Kingdom, Netherlands (SiteA, SiteB, SiteC) |
+| Queues | Ireland - Team IE; United Kingdom - Team UK; Netherlands - Team NL (`resolution = Unresolved AND Organizations = "<country>" ORDER BY created ASC`) |
+| Flow | Country queues - pre-assign new requests to an engineer: work item created; JQL `Organizations in ("Ireland", "United Kingdom", "Netherlands") AND assignee is EMPTY`; assign from a user list with balanced workload |
+| Flow | Laptop issue resolved - set asset status back to In use: work item transitioned; JQL `"Request Type" = "Laptop or device issue" AND Laptop is not EMPTY AND statusCategory = Done`; AQL branch; Edit object Status = In use |
+| Request type | SaaS licence or external guest access (Access request work type, approval workflow); approval flow condition covers both access request types |

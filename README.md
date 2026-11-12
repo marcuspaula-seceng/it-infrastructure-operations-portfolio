@@ -36,6 +36,8 @@ conventions. Every sample dataset is entirely synthetic. See
 | 07 | [Jira Service Management Lab — IT Service Desk Build](projects/07-jira-service-management-lab/README.md) | ITSM configuration, automation and ITAM procedures | Request types, SLAs on a Dublin calendar, JQL queue, joiner/leaver automation, access approval, knowledge base, Assets (CMDB) laptops linked to requests, major incident, problem and normal change with CAB approval, scan-based laptop audit and return, SLA report and dashboard, user/agent/admin manuals, test evidence |
 | 08 | [Identity & Endpoint Lifecycle — Entra ID, Microsoft 365, Apple Business Manager, Puppet, BitLocker](projects/08-identity-endpoint-lifecycle/README.md) | Joiner, mover and leaver across Windows and macOS | Lifecycle diagram, tool mapping to Intune/Jamf, joiner/leaver runbook, troubleshooting guide, read-only Microsoft Graph PowerShell script, lifecycle flowchart (PDF) |
 
+**Scenario map:** [16 common IT operations scenarios](projects/07-jira-service-management-lab/scenario-map.md) mapped to my real work, the evidence in this repository and the Jira Service Management lab.
+
 **Experience flow (PDF):** [Marcus Paula - experience flow](docs/Marcus_Paula_Experience_Flow.pdf), a map from my real work at TikTok and Hylas, my Jira Service Management lab and education to the evidence in these projects, with an area-by-area table and links.
 
 ---

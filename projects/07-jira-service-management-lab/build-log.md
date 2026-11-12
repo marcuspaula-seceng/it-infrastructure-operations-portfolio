@@ -25,6 +25,7 @@ person and asset in the screenshots is synthetic test data.
 | 12 | Incident, problem and change management | IT Operations (ITSM) space: major incident, problem, normal change with CAB approval |
 | 13 | IT asset management procedures | Scan-based laptop audit in Assets, laptop return on the Leaver request, two knowledge base articles |
 | 14 | Reports and dashboards | SLA first response report and a service desk dashboard |
+| 15 | Organizations, routing, Assets automation, approvals | Country queues with pre-assignment, laptop back to In use, SaaS request with approval |
 
 ---
 
@@ -479,10 +480,71 @@ type; a by-request-type view is available in the built-in service space reports.
 
 ---
 
+<a id="step-15"></a>
+
+## Step 15 — Country queues, laptop back in use, SaaS request with approval
+
+**Training topic:** organizations group customers; queues and flows can route
+work by organization. Flows can also keep Assets correct when a request ends,
+and new request types can reuse an approval workflow.
+
+**What I did:**
+
+1. Created three organizations, **Ireland**, **United Kingdom** and
+   **Netherlands** (sites SiteA, SiteB and SiteC), and added them to the IT
+   service space.
+2. Created one queue per country, each named after the team that owns it:
+   **Ireland - Team IE**, **United Kingdom - Team UK** and
+   **Netherlands - Team NL**:
+
+   ```sql
+   resolution = Unresolved AND Organizations = "Ireland" ORDER BY created ASC
+   ```
+
+3. Built a flow, **Country queues - pre-assign new requests to an engineer**:
+   when a request is created for one of the three organizations and nobody owns
+   it, it is assigned to an engineer from a defined list using
+   **balanced workload** (the engineer with the fewest open items). The lab has
+   one agent, so the list has one person; in a real desk each country would
+   have its own list.
+4. Built a flow, **Laptop issue resolved - set asset status back to In use**:
+   when a *Laptop or device issue* with a laptop selected moves to a Done
+   status, an AQL branch finds the laptop and sets its status back to
+   **In use**. It closes the loop with the Step 11 flow that sets *In repair*.
+5. Created a new request type, **SaaS licence or external guest access**, on
+   the Access request work type, so it uses the workflow with the approval step.
+   I changed the approval flow condition to cover both request types:
+
+   ```sql
+   "Request Type" in ("Access request (apps & admin rights)",
+                      "SaaS licence or external guest access")
+   ```
+
+**Why:** in my real work tickets went into queues by country, each owned by a
+team, and were pre-assigned to engineers. This step rebuilds that pattern from
+the admin side. The laptop flow keeps the CMDB true without manual updates, and
+licences or guest access for external partners cost money and open data, so
+they need approval before any work starts.
+
+![Country queue: Ireland - Team IE with the pre-assigned request](screenshots/35-country-queue-ireland.jpg)
+
+![Flow: country queues, pre-assign with balanced workload](screenshots/36-automation-country-pre-assign.jpg)
+
+![Flow: laptop back to In use when the request is resolved](screenshots/37-automation-laptop-back-in-use.jpg)
+
+**Tests:**
+
+| Test | Result |
+|---|---|
+| `IT-15` (Ireland), `IT-16` (United Kingdom), `IT-17` (Netherlands) | Each appeared in its country queue and was assigned to the engineer by the flow |
+| Resolve `IT-13` (laptop `LT-0001`, status *In repair*) | `LT-0001` status changed to **In use** |
+| SaaS request `IT-18` | Went straight to **In Review**, waiting for 1 approval; the requester is listed as an excluded approver |
+
+![IT-18: SaaS request waiting for approval](screenshots/38-test-IT-18-saas-request-approval.jpg)
+
+---
 ## What I would do next
 
-- **Assets:** a flow that sets the laptop back to *In use* when the request is
-  resolved.
 - **Knowledge base:** more articles, with categories, and reporting on which
   searches end without an article.
 - **SSO and SCIM** from Entra ID so access to the service desk follows the

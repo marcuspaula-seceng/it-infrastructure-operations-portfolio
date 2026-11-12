@@ -49,6 +49,9 @@ in the [build log](build-log.md) and the [test results](evidence/owner-cloud-res
 | Laptop return on the Leaver request — tested | [LT-0003 history](screenshots/31-asset-return-LT-0003-history.jpg) |
 | Knowledge base article: return your laptop | [Article](screenshots/32-kb-return-laptop-article.jpg) |
 | SLA report and dashboard | [SLA first response: met vs breached](screenshots/33-report-sla-first-response.jpg) · [Dashboard](screenshots/34-dashboard.jpg) |
+| Country queues with pre-assignment — tested | [Ireland queue](screenshots/35-country-queue-ireland.jpg) · [Flow](screenshots/36-automation-country-pre-assign.jpg) |
+| Laptop back to In use when the request is resolved — tested | [Flow](screenshots/37-automation-laptop-back-in-use.jpg) |
+| SaaS licence / external guest access request with approval — tested | [IT-18 waiting for approval](screenshots/38-test-IT-18-saas-request-approval.jpg) |
 
 ## Operational challenge
 
@@ -165,7 +168,7 @@ that configuration from scratch so each design decision can be explained.
 - [`build-log.md`](build-log.md) — **start here**: the build step by step,
   each step tied to the Jira Service Management training topic it applies,
   with the decision made, the reason, and a screenshot.
-- [`screenshots/`](screenshots/) — 34 screenshots of the configuration and the
+- [`screenshots/`](screenshots/) — 38 screenshots of the configuration and the
   test results.
 - [`configuration.md`](configuration.md) — the full configuration: request
   types, portal groups, SLA calendar and goals, queue JQL, automation flows,
@@ -182,6 +185,13 @@ that configuration from scratch so each design decision can be explained.
 - [`tools/asset-audit-reconcile/`](tools/asset-audit-reconcile/) — a Python
   tool that compares a scan CSV with an Assets export: Found, Found - wrong
   location, Missing or Unexpected.
+- [`admin/phase-5-administration.md`](admin/phase-5-administration.md) —
+  Phase 5: permission, notification and workflow schemes, and a design for one
+  Group IT service desk for three companies, with risks and a safe roll-out.
+  Marks what is configured in the lab and what is design only.
+- [`scenario-map.md`](scenario-map.md) — 16 common IT operations scenarios
+  mapped to my real work, the evidence in this repository and what the lab
+  shows.
 
 ## Related projects
 
