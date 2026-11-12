@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Marcus Paula - experience flow</title>
+<style>
+@page { size: A4 landscape; margin: 10mm; }
+* { box-sizing: border-box; }
+body { font-family: "Segoe UI", Arial, sans-serif; color: #1d2433; margin: 0; font-size: 8.9pt; }
+h1 { font-size: 15pt; margin: 0 0 2px; }
+.sub { color: #556; margin: 0 0 4px; font-size: 10pt; }
+.legend { display: flex; gap: 14px; font-size: 9pt; margin-bottom: 4px; }
+.legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; background: var(--c); }
+.head, .row { display: grid; grid-template-columns: 1.05fr 24px 1.35fr 24px 1.35fr 24px 0.95fr; align-items: stretch; }
+.head div { font-weight: 700; font-size: 9pt; letter-spacing: .04em; color: #556; text-transform: uppercase; padding: 0 4px 4px; }
+.row { margin-bottom: 4px; }
+.box { border-radius: 6px; padding: 4px 7px; line-height: 1.22; }
+.area { background: #1d2433; color: #fff; font-weight: 700; display: flex; align-items: center; }
+.real { background: #eef1f5; border-left: 4px solid #1d2433; }
+.lab  { background: #e8f0fe; border-left: 4px solid #1f5fd1; }
+.proof { background: #fff; border: 1px solid #c9d2e0; font-size: 9pt; }
+.proof a { color: #1f5fd1; text-decoration: none; display: block; }
+.arrow { display: flex; align-items: center; justify-content: center; color: #8a94a6; font-size: 14pt; }
+.tag { font-size: 8pt; color: #556; display: block; margin-top: 2px; }
+.foot { font-size: 8.5pt; color: #556; margin-top: 6px; border-top: 1px solid #dde3ec; padding-top: 5px; }
+.page2 { page-break-before: always; }
+table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
+th, td { border: 1px solid #c9d2e0; padding: 5px 7px; text-align: left; vertical-align: top; }
+th { background: #1d2433; color: #fff; }
+td.y { color: #157347; font-weight: 700; } td.l { color: #1f5fd1; font-weight: 700; } td.n { color: #9a5b00; font-weight: 700; }
+h2 { font-size: 14pt; margin: 0 0 6px; }
+</style></head><body>
+
+<h1>Marcus Paula — what I did, what I practised, and the proof</h1>
+<p class="sub">IT Operations Engineer · TikTok, Dublin (EMEA) · March 2023 – September 2026 &nbsp;|&nbsp; Information Technology Engineer · Hylas · January 2022 – February 2023 &nbsp;|&nbsp; github.com/marcuspaula-seceng</p>
+<div class="legend"><span style="--c:#1d2433">Real work (employer)</span><span style="--c:#1f5fd1">My lab (synthetic data, labelled as lab)</span><span style="--c:#c9d2e0">Public proof on GitHub (screenshots, tests, build log)</span></div>
+
+<div class="head"><div>Area</div><div></div><div>Real work at TikTok</div><div></div><div>What I built and tested in my lab</div><div></div><div>Proof (click)</div></div>
+
+<div class="row"><div class="box area">Service desk (Jira)</div><div class="arrow">→</div>
+<div class="box real">Jira every day as an <b>agent</b> (not admin): priorities, L2/L3 escalations, SLAs. Queues by country, each owned by a team, tickets pre-assigned to engineers.</div><div class="arrow">→</div>
+<div class="box lab">Built the <b>admin</b> side in Jira Service Management Cloud: request types, SLAs on Dublin hours, country queues with auto pre-assign, approvals, joiner/leaver automation, knowledge base, SLA report and dashboard.</div><div class="arrow">→</div>
+<div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/README.md">Project 07 – JSM lab</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/build-log.md">Build log, 15 steps</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/07-jira-service-management-lab/screenshots">38 screenshots</a></div></div>
+
+<div class="row"><div class="box area">Incidents and change (ITSM)</div><div class="arrow">→</div>
+<div class="box real">On-site troubleshooting and escalation with evidence. Firewall and VPN were owned by the network team.</div><div class="arrow">→</div>
+<div class="box lab">Major incident with a timeline, problem record with root cause, and a normal change (firewall firmware) through peer review and CAB approval.</div><div class="arrow">→</div>
+<div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/build-log.md#step-12--incident-problem-and-change-itsm">Step 12 – ITSM</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/manuals/agent-runbook.md">Agent runbook (first 60 min)</a></div></div>
+
+<div class="row"><div class="box area">Identity and Microsoft 365</div><div class="arrow">→</div>
+<div class="box real">Entra ID accounts (create, disable), password and MFA resets, licences, security groups, distribution lists, shared mailboxes — joiners and leavers by hand.</div><div class="arrow">→</div>
+<div class="box lab">Automated joiner / mover / leaver with Microsoft Graph PowerShell: dry run by default, leaver blocked and sessions revoked first, failures become a ticket. 31 automated tests.</div><div class="arrow">→</div>
+<div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/09-identity-lifecycle-automation">Project 09 – JML automation</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Project 08 – runbook</a><a href="https://github.com/marcuspaula-seceng/active-directory-automation">AD automation lab</a></div></div>
+
+<div class="row"><div class="box area">Mac and Windows devices</div><div class="arrow">→</div>
+<div class="box real">Macs in Apple Business Manager + Puppet. Windows with BitLocker / MBAM. Lock, wipe and device returns. Laptop preparation cut from 60 to 15 minutes.</div><div class="arrow">→</div>
+<div class="box lab">Readiness script and checklists; tool mapping to Intune and Jamf (design — new to me).</div><div class="arrow">→</div>
+<div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/01-endpoint-imaging-optimisation">Project 01 – imaging</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Project 08 – devices</a></div></div>
+
+<div class="row"><div class="box area">Assets (ITAM)</div><div class="arrow">→</div>
+<div class="box real">Helped design a scan-based asset audit: 5,000+ assets, 99% visibility. Asset return process used in three sites.</div><div class="arrow">→</div>
+<div class="box lab">Jira Assets (CMDB): laptops linked to requests, In repair / back In use automatically, scan audit with missing-laptop ticket, Python reconcile tool with tests.</div><div class="arrow">→</div>
+<div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/02-asset-management-audit">Project 02 – audit</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/04-asset-return-redeployment">Project 04 – returns</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/procedures/scan-based-asset-audit.md">Audit procedure + tool</a></div></div>
+
+<div class="row"><div class="box area">Office and meeting rooms</div><div class="arrow">→</div>
+<div class="box real">19 meeting rooms checked on Lark and Zoom; equipment logistics with couriers and vendors.</div><div class="arrow">→</div>
+<div class="box lab">Room readiness report tool with synthetic data.</div><div class="arrow">→</div>
+<div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/05-meeting-room-readiness">Project 05 – rooms</a></div></div>
+
+<div class="foot"><b>How to read it:</b> left = what I did in my job; middle = what I rebuilt myself to learn the admin side; right = links anyone can open. Labs use synthetic data and are not production claims. No employer data is published. Jira courses in progress (~50 hours, hands-on): <a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/learning-path.md">learning path</a>.</div>
+
+<div class="page2">
+<h2>What I have done, what I practised in a lab, and what is new to me</h2>
+<p class="sub">Clear on purpose: <b style="color:#157347">Done in real work</b> · <b style="color:#1f5fd1">Practised in my lab</b> · <b style="color:#9a5b00">New to me — I would learn it first in a test environment</b></p>
+<table>
+<tr><th style="width:24%">Skill</th><th style="width:16%">Level</th><th>Detail</th><th style="width:24%">Proof</th></tr>
+<tr><td>Jira as agent (tickets, SLAs, escalations)</td><td class="y">Done in real work</td><td>Every day at TikTok; country queues with pre-assignment.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/scenario-map.md">Scenario map</a></td></tr>
+<tr><td>Jira Service Management administration</td><td class="l">Practised in my lab</td><td>Request types, SLAs, queues, automation, approvals, Assets, ITSM, reports, schemes.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/build-log.md">Build log</a></td></tr>
+<tr><td>Entra ID and Microsoft 365 user lifecycle</td><td class="y">Done in real work</td><td>Accounts, MFA, licences, groups, mailboxes.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Project 08</a></td></tr>
+<tr><td>Joiner / leaver automation (Graph PowerShell)</td><td class="l">Practised in my lab</td><td>Tested with mocks; needs a tenant to run for real.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/09-identity-lifecycle-automation">Project 09</a></td></tr>
+<tr><td>Apple Business Manager + Puppet; BitLocker / MBAM</td><td class="y">Done in real work</td><td>Mac and Windows device lifecycle, lock, wipe, return.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Project 08</a></td></tr>
+<tr><td>Asset audit and returns</td><td class="y">Done in real work</td><td>5,000+ assets, 99% visibility; returns in three sites.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/02-asset-management-audit">Project 02</a></td></tr>
+<tr><td>Intune, Mosyle, Jamf administration</td><td class="n">New to me</td><td>Same lifecycle as ABM + Puppet / BitLocker; mapping documented.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Tool mapping</a></td></tr>
+<tr><td>Microsoft Defender, FortiGate, QNAP administration</td><td class="n">New to me</td><td>Firewall/VPN owned by the network team at TikTok. Firewall change practised as a CAB change in the lab.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/build-log.md#step-12--incident-problem-and-change-itsm">Change ITSM-4</a></td></tr>
+<tr><td>SSO / SCIM from Entra ID to Atlassian</td><td class="n">New to me</td><td>Next step, in a free test tenant.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/learning-path.md">Learning path</a></td></tr>
+</table>
+<p class="foot">All lab work uses synthetic data and is labelled as a lab. Employer work is described at capability level, with no confidential data. Every link opens a public page with screenshots, scripts or test results.</p>
+</div>
+</body></html>
