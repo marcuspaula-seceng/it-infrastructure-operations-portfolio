@@ -37,6 +37,8 @@ conventions. Every sample dataset is entirely synthetic. See
 | 08 | [Identity & Endpoint Lifecycle — Entra ID, Microsoft 365, Apple Business Manager, Puppet, BitLocker](projects/08-identity-endpoint-lifecycle/README.md) | Joiner, mover and leaver across Windows and macOS | Lifecycle diagram, tool mapping to Intune/Jamf, joiner/leaver runbook, troubleshooting guide, read-only Microsoft Graph PowerShell script, lifecycle flowchart (PDF) |
 | 09 | [Joiner, Mover and Leaver Automation with Microsoft Graph PowerShell (lab, tested with Pester)](projects/09-identity-lifecycle-automation/README.md) | Automating the manual JML steps in Entra ID and Microsoft 365 | PowerShell module (plan, WhatIf-first run, exceptions CSV for tickets, leaver access check), synthetic HR feed, Pester tests with mocked Graph calls in CI |
 
+**Scenarios:** [16 common IT operations scenarios, each with the process, a flowchart and the proof](scenarios/README.md). PDF version: [IT operations scenarios (PDF)](docs/Marcus_Paula_IT_Operations_Scenarios.pdf).
+
 **Scenario map:** [16 common IT operations scenarios](projects/07-jira-service-management-lab/scenario-map.md) mapped to my real work, the evidence in this repository and the Jira Service Management lab.
 
 **Experience flow (PDF):** [Marcus Paula - experience flow](docs/Marcus_Paula_Experience_Flow.pdf), a map from my real work at TikTok and Hylas, my Jira Service Management lab and education to the evidence in these projects, with an area-by-area table and links.

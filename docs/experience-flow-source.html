@@ -3,15 +3,15 @@
 <style>
 @page { size: A4 landscape; margin: 10mm; }
 * { box-sizing: border-box; }
-body { font-family: "Segoe UI", Arial, sans-serif; color: #1d2433; margin: 0; font-size: 8.9pt; }
-h1 { font-size: 15pt; margin: 0 0 2px; }
-.sub { color: #556; margin: 0 0 4px; font-size: 10pt; }
+body { font-family: "Segoe UI", Arial, sans-serif; color: #1d2433; margin: 0; font-size: 9.9pt; }
+h1 { font-size: 17pt; margin: 0 0 2px; }
+.sub { color: #556; margin: 0 0 2px; font-size: 9.5pt; }
 .legend { display: flex; gap: 14px; font-size: 9pt; margin-bottom: 4px; }
 .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; background: var(--c); }
 .head, .row { display: grid; grid-template-columns: 1.05fr 24px 1.35fr 24px 1.35fr 24px 0.95fr; align-items: stretch; }
 .head div { font-weight: 700; font-size: 9pt; letter-spacing: .04em; color: #556; text-transform: uppercase; padding: 0 4px 4px; }
 .row { margin-bottom: 4px; }
-.box { border-radius: 6px; padding: 4px 7px; line-height: 1.22; }
+.box { border-radius: 6px; padding: 5px 8px; line-height: 1.26; }
 .area { background: #1d2433; color: #fff; font-weight: 700; display: flex; align-items: center; }
 .real { background: #eef1f5; border-left: 4px solid #1d2433; }
 .lab  { background: #e8f0fe; border-left: 4px solid #1f5fd1; }
@@ -19,16 +19,16 @@ h1 { font-size: 15pt; margin: 0 0 2px; }
 .proof a { color: #1f5fd1; text-decoration: none; display: block; }
 .arrow { display: flex; align-items: center; justify-content: center; color: #8a94a6; font-size: 14pt; }
 .tag { font-size: 8pt; color: #556; display: block; margin-top: 2px; }
-.foot { font-size: 8.5pt; color: #556; margin-top: 6px; border-top: 1px solid #dde3ec; padding-top: 5px; }
+.foot { font-size: 8.5pt; break-before: avoid; color: #556; margin-top: 6px; border-top: 1px solid #dde3ec; padding-top: 5px; }
 .page2 { page-break-before: always; }
-table { border-collapse: collapse; width: 100%; font-size: 9.5pt; }
-th, td { border: 1px solid #c9d2e0; padding: 5px 7px; text-align: left; vertical-align: top; }
+table { border-collapse: collapse; width: 100%; font-size: 11pt; }
+th, td { border: 1px solid #c9d2e0; padding: 9px 9px; text-align: left; vertical-align: top; }
 th { background: #1d2433; color: #fff; }
 td.y { color: #157347; font-weight: 700; } td.l { color: #1f5fd1; font-weight: 700; } td.n { color: #9a5b00; font-weight: 700; }
 h2 { font-size: 14pt; margin: 0 0 6px; }
 </style></head><body>
 
-<h1>Marcus Paula — what I did, what I practised, and the proof</h1>
+<h1>Marcus Paula: what I did, what I practised, and the proof</h1>
 <p class="sub">IT Operations Engineer · TikTok, Dublin (EMEA) · March 2023 – September 2026 &nbsp;|&nbsp; Information Technology Engineer · Hylas · January 2022 – February 2023 &nbsp;|&nbsp; github.com/marcuspaula-seceng</p>
 <div class="legend"><span style="--c:#1d2433">Real work (employer)</span><span style="--c:#1f5fd1">My lab (synthetic data, labelled as lab)</span><span style="--c:#c9d2e0">Public proof on GitHub (screenshots, tests, build log)</span></div>
 
@@ -46,12 +46,12 @@ h2 { font-size: 14pt; margin: 0 0 6px; }
 
 <div class="row"><div class="box area">Identity and Microsoft 365</div><div class="arrow">→</div>
 <div class="box real">Joiners and leavers: Entra ID accounts (create, disable), MFA and password resets, licences, security groups, distribution lists, shared mailboxes. Device side with Apple Business Manager + Puppet (Mac) and BitLocker / MBAM (Windows).</div><div class="arrow">→</div>
-<div class="box lab">Same outcome with other tools: joiner / mover / leaver with Microsoft Graph PowerShell — dry run by default, leaver blocked and sessions revoked first, failures become a ticket. 31 automated tests.</div><div class="arrow">→</div>
+<div class="box lab">Same outcome with other tools: joiner / mover / leaver with Microsoft Graph PowerShell: dry run by default, leaver blocked and sessions revoked first, failures become a ticket. 31 automated tests.</div><div class="arrow">→</div>
 <div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/09-identity-lifecycle-automation">Project 09 – JML automation</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Project 08 – runbook</a><a href="https://github.com/marcuspaula-seceng/active-directory-automation">AD automation lab</a></div></div>
 
 <div class="row"><div class="box area">Mac and Windows devices</div><div class="arrow">→</div>
 <div class="box real">Enrolment with Apple Business Manager, configuration with Puppet (Mac), encryption and recovery keys with BitLocker / MBAM (Windows). Lock, wipe and device returns. Laptop preparation cut from 60 to 15 minutes.</div><div class="arrow">→</div>
-<div class="box lab">Same results as an MDM: enrol → configure → encrypt → comply → wipe. Mapped step by step to Intune and Jamf (familiar — same process, different system).</div><div class="arrow">→</div>
+<div class="box lab">Same results as an MDM: enrol → configure → encrypt → comply → wipe. Mapped step by step to Intune and Jamf (familiar, same process on a different system).</div><div class="arrow">→</div>
 <div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/01-endpoint-imaging-optimisation">Project 01 – imaging</a><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Project 08 – devices</a></div></div>
 
 <div class="row"><div class="box area">Assets (ITAM)</div><div class="arrow">→</div>
@@ -64,11 +64,11 @@ h2 { font-size: 14pt; margin: 0 0 6px; }
 <div class="box lab">Room readiness report tool with synthetic data.</div><div class="arrow">→</div>
 <div class="box proof"><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/05-meeting-room-readiness">Project 05 – rooms</a></div></div>
 
-<div class="foot"><b>How to read it:</b> left = what I did in my job; middle = what I rebuilt myself to learn the admin side; right = links anyone can open. Labs use synthetic data and are not production claims. No employer data is published. Jira courses in progress (~50 hours, hands-on): <a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/learning-path.md">learning path</a>.</div>
+<div class="foot" style="margin-top:2px;padding-top:3px"><b>How to read it:</b> left = what I did in my job; middle = what I rebuilt myself to learn the admin side; right = links anyone can open. Labs use synthetic data and are not production claims. No employer data is published. 16 IT operations scenarios with process, flowchart and proof: <a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/scenarios/README.md">scenarios</a>. Jira courses in progress (~50 hours, hands-on): <a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/learning-path.md">learning path</a>.</div>
 
 <div class="page2">
 <h2>What I have done, what I practised in a lab, and where I know the process on a different system</h2>
-<p class="sub">How to read it: <b style="color:#157347">Done in real work</b> · <b style="color:#1f5fd1">Practised in my lab</b> · <b style="color:#9a5b00">Familiar — same process, different system</b></p>
+<p class="sub">How to read it: <b style="color:#157347">Done in real work</b> · <b style="color:#1f5fd1">Practised in my lab</b> · <b style="color:#9a5b00">Familiar, same process on a different system</b></p>
 <table>
 <tr><th style="width:24%">Skill</th><th style="width:16%">Level</th><th>Detail</th><th style="width:24%">Proof</th></tr>
 <tr><td>Jira as agent (tickets, SLAs, escalations)</td><td class="y">Done in real work</td><td>Every day at TikTok; country queues with pre-assignment.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/scenario-map.md">Scenario map</a></td></tr>
@@ -77,9 +77,9 @@ h2 { font-size: 14pt; margin: 0 0 6px; }
 <tr><td>Joiner / leaver automation (Graph PowerShell)</td><td class="l">Practised in my lab</td><td>Tested with mocks; needs a tenant to run for real.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/09-identity-lifecycle-automation">Project 09</a></td></tr>
 <tr><td>Apple Business Manager + Puppet; BitLocker / MBAM</td><td class="y">Done in real work</td><td>Mac and Windows device lifecycle, lock, wipe, return.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Project 08</a></td></tr>
 <tr><td>Asset audit and returns</td><td class="y">Done in real work</td><td>5,000+ assets, 99% visibility; returns in three sites.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/02-asset-management-audit">Project 02</a></td></tr>
-<tr><td>Intune, Mosyle, Jamf consoles</td><td class="n">Familiar — same process, different system</td><td>The same outcomes (enrolment, configuration, encryption, wipe) I delivered with ABM + Puppet + BitLocker / MBAM.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Tool mapping</a></td></tr>
-<tr><td>Microsoft Defender, FortiGate, QNAP administration</td><td class="n">Familiar — same process, different system</td><td>Same process I worked at TikTok with the network team (evidence, escalation, change). Firewall firmware change run through CAB in my lab.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/build-log.md#step-12--incident-problem-and-change-itsm">Change ITSM-4</a></td></tr>
-<tr><td>SSO / SCIM from Entra ID to Atlassian</td><td class="n">Familiar — same process, different system</td><td>Same identity lifecycle I ran in Entra ID; next step in a free test tenant.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/learning-path.md">Learning path</a></td></tr>
+<tr><td>Intune, Mosyle, Jamf consoles</td><td class="n">Familiar, same process on a different system</td><td>The same outcomes (enrolment, configuration, encryption, wipe) I delivered with ABM + Puppet + BitLocker / MBAM.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/tree/main/projects/08-identity-endpoint-lifecycle">Tool mapping</a></td></tr>
+<tr><td>Microsoft Defender, FortiGate, QNAP administration</td><td class="n">Familiar, same process on a different system</td><td>Same process I worked at TikTok with the network team (evidence, escalation, change). Firewall firmware change run through CAB in my lab.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/build-log.md#step-12--incident-problem-and-change-itsm">Change ITSM-4</a></td></tr>
+<tr><td>SSO / SCIM from Entra ID to Atlassian</td><td class="n">Familiar, same process on a different system</td><td>Same identity lifecycle I ran in Entra ID; next step in a free test tenant.</td><td><a href="https://github.com/marcuspaula-seceng/it-infrastructure-operations-portfolio/blob/main/projects/07-jira-service-management-lab/learning-path.md">Learning path</a></td></tr>
 </table>
 <p class="foot">All lab work uses synthetic data and is labelled as a lab. Employer work is described at capability level, with no confidential data. Every link opens a public page with screenshots, scripts or test results.</p>
 </div>

@@ -3,6 +3,15 @@
 All notable changes to this portfolio are documented here. The format is based
 on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.4.0] - 2026-11-12
+
+### Added
+
+- Project 07: ITSM (major incident, problem, change with CAB), Assets audit and laptop return, SLA report and dashboard, country queues with pre-assignment, laptop back to In use, SaaS request with approval, manuals, audit procedure, reconcile tool with tests, Phase 5 administration, scenario map and learning path.
+- Project 09: joiner, mover and leaver automation with Microsoft Graph PowerShell and Pester tests in CI.
+- Scenarios: 16 IT operations scenarios with process, flowchart and proof, plus a PDF version.
+- Experience flow PDF rebuilt (real work, lab, proof).
+
 ## [1.3.0] - 2026-11-11
 
 ### Added
